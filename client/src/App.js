@@ -17,11 +17,20 @@ class App extends Component {
 
       // Get the contract instance.
       const networkId = await web3.eth.net.getId();
+      console.log(RealEstatePropertyFactory.networks);
       const deployedNetwork = RealEstatePropertyFactory.networks[networkId];
+      console.log(deployedNetwork);
       const instance = new web3.eth.Contract(
         RealEstatePropertyFactory.abi,
-        deployedNetwork && deployedNetwork.address,
+        '0xD095Ab67574FE965ad52803B60E82cC0fC44a513',
       );
+
+
+      // instance.methods.createProperty('0x3C5b618b756342E529116563e1075B30A638e68e', 'ds', 'sd', 1, 1).send({ from: accounts[0]})
+
+    const res = await instance.methods.getProperties().call();
+
+     console.log(res[0].properties[0].deposit);
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
@@ -38,14 +47,11 @@ class App extends Component {
   runExample = async () => {
     const { accounts, contract } = this.state;
 
-    // Stores a given value, 5 by default.
-    await contract.methods.createRealEstateProperty('ds', 'sdsd', 1, 1).send({ from: accounts[0] });
 
-    // Get the value from the contract to prove it worked.
-    const response = await contract.methods.get().call();
+
 
     // Update state with the result.
-    this.setState({ storageValue: response });
+    this.setState({ storageValue: accounts });
   };
 
   render() {

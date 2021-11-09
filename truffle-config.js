@@ -1,7 +1,5 @@
-// const HDWalletProvider = require('./truffle-hdwallet-provider');
-
-
-// const mnemonic = 'demise mouse tobacco else balcony protect sad charge crunch powder express swamp water cargo employ';
+const HDWalletProvider = require("@truffle/hdwallet-provider");
+const mnemonic = 'puzzle hockey drink universe face exhibit column sing panther roof beef found';
 
 /**
  * Use this file to configure your truffle project. It's seeded with some
@@ -29,6 +27,7 @@
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
 
 module.exports = {
+  contracts_build_directory: "./client/src/contracts",
   /**
    * Networks define how you connect to your ethereum client and let you set the
    * defaults web3 uses to send transactions. If you don't specify one truffle
@@ -63,14 +62,14 @@ module.exports = {
     // },
     // Useful for deploying to a public network.
     // NB: It's important to wrap the provider as a function.
-    // ropsten: {
-    //   provider: new HDWalletProvider(mnemonic, 'https://ropsten.infura.io/v3/52abd812dbbc433b8926f937b90c42eb'),
-    //   network_id: 3
-    //   // gas: 5500000,        // Ropsten has a lower block limit than mainnet
-    //   // confirmations: 2,    // # of confs to wait between deployments. (default: 0)
-    //   // timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
-    //   // skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
-    // },
+    ropsten: {
+      provider: new HDWalletProvider(mnemonic, 'https://ropsten.infura.io/v3/52abd812dbbc433b8926f937b90c42eb'),
+      network_id: 3
+      // gas: 5500000,        // Ropsten has a lower block limit than mainnet
+      // confirmations: 2,    // # of confs to wait between deployments. (default: 0)
+      // timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
+      // skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
+    },
     // Useful for private networks
     // private: {
     // provider: () => new HDWalletProvider(mnemonic, `https://network.io`),
