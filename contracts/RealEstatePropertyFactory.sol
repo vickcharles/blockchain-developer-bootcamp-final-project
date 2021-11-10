@@ -82,7 +82,8 @@ contract RealEstatePropertyFactory {
         string title;
         string description;
         uint256 montlyPrice;
-        uint256 deposit;
+        uint256 depositAmount;
+        uint256 depositPrice;
         address owner;
         address payable tenant;
         bool available;
@@ -111,7 +112,7 @@ contract RealEstatePropertyFactory {
     {
         RealEstateProperty storage property = properties[propertyOwner];
         uint256 montlyPrice = property.properties[propertyId].montlyPrice;
-        uint256 depositPrice = property.properties[propertyId].deposit;
+        uint256 depositPrice = property.properties[propertyId].depositPrice;
         uint256 sum = msg.value;
         uint256 deposit = sum - montlyPrice;
         uint256 toPay = sum - deposit;
@@ -123,6 +124,7 @@ contract RealEstatePropertyFactory {
         );
         property.properties[propertyId].tenant = payable(msg.sender);
         property.properties[propertyId].available = false;
+        property.properties[propertyId].depositAmount = deposit;
         tenant[msg.sender] = property.properties[propertyId];
         property.owner.transfer(toPay);
         _tenant.add(msg.sender);
@@ -137,13 +139,19 @@ contract RealEstatePropertyFactory {
         returns (
             string memory,
             string memory,
-            uint256
+            uint256,
+            address,
+            address,
+            bool
         )
     {
         return (
             properties[_address].properties[0].title,
             properties[_address].properties[0].description,
-            properties[_address].properties[0].deposit
+            properties[_address].properties[0].depositPrice,
+            properties[_address].properties[0].tenant,
+            properties[_address].properties[0].owner,
+            properties[_address].properties[0].available
         );
     }
 
@@ -159,7 +167,7 @@ contract RealEstatePropertyFactory {
         property.title = _title;
         property.description = _description;
         property.montlyPrice = _amount;
-        property.deposit = _deposit;
+        property.depositPrice = _deposit;
         property.available = true;
         property.owner = msg.sender;
         property.id = p.numOfProperties++;

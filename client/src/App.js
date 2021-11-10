@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import RealEstatePropertyFactory from "./contracts/RealEstatePropertyFactory.json";
 import getWeb3 from "./getWeb3";
+import RentersList from "./components/containers/renters/RenterList";
+import AppNavBar from './components/ui/NavBar/AppNavBar'
 
 import "./App.css";
 
@@ -25,11 +27,7 @@ class App extends Component {
         deployedNetwork && deployedNetwork.address,
       );
 
-      // instance.methods.createProperty('0x3C5b618b756342E529116563e1075B30A638e68e', 'ds', 'sd', 1, 1).send({ from: accounts[0]})
 
-    const res = await instance.methods.getProperties().call();
-
-     console.log(res[0].properties[0]);
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
@@ -46,30 +44,15 @@ class App extends Component {
   runExample = async () => {
     const { accounts, contract } = this.state;
 
-
-
-
     // Update state with the result.
     this.setState({ storageValue: accounts });
   };
 
   render() {
-    if (!this.state.web3) {
-      return <div>Loading Web3, accounts, and contract...</div>;
-    }
     return (
       <div className="App">
-        <h1>Good to Go!</h1>
-        <p>Your Truffle Box is installed and ready.</p>
-        <h2>Smart Contract Example</h2>
-        <p>
-          If your contracts compiled and migrated successfully, below will show
-          a stored value of 5 (by default).
-        </p>
-        <p>
-          Try changing the value stored on <strong>line 42</strong> of App.js.
-        </p>
-        <div>The stored value is: {this.state.storageValue}</div>
+        <AppNavBar />
+        <RentersList />
       </div>
     );
   }
