@@ -116,39 +116,22 @@
   "ast": {
     "absolutePath": "project:/contracts/RealEstatePropertyFactory.sol",
     "exportedSymbols": {
-      "RealEstateProperty": [
-        170
-      ],
-      "RealEstatePropertyFactory": [
-        244
-      ],
-      "SharedStructs": [
-        47
-      ]
+      "RealEstateProperty": [170],
+      "RealEstatePropertyFactory": [244],
+      "SharedStructs": [47]
     },
     "id": 245,
     "nodeType": "SourceUnit",
     "nodes": [
       {
         "id": 34,
-        "literals": [
-          "experimental",
-          "ABIEncoderV2"
-        ],
+        "literals": ["experimental", "ABIEncoderV2"],
         "nodeType": "PragmaDirective",
         "src": "32:33:1"
       },
       {
         "id": 35,
-        "literals": [
-          "solidity",
-          ">=",
-          "0.4",
-          ".22",
-          "<",
-          "0.9",
-          ".0"
-        ],
+        "literals": ["solidity", ">=", "0.4", ".22", "<", "0.9", ".0"],
         "nodeType": "PragmaDirective",
         "src": "66:32:1"
       },
@@ -159,9 +142,7 @@
         "documentation": null,
         "fullyImplemented": true,
         "id": 47,
-        "linearizedBaseContracts": [
-          47
-        ],
+        "linearizedBaseContracts": [47],
         "name": "SharedStructs",
         "nodeType": "ContractDefinition",
         "nodes": [
@@ -318,9 +299,7 @@
         "documentation": null,
         "fullyImplemented": true,
         "id": 170,
-        "linearizedBaseContracts": [
-          170
-        ],
+        "linearizedBaseContracts": [170],
         "name": "RealEstateProperty",
         "nodeType": "ContractDefinition",
         "nodes": [
@@ -619,10 +598,7 @@
                       "id": 69,
                       "name": "require",
                       "nodeType": "Identifier",
-                      "overloadedDeclarations": [
-                        285,
-                        286
-                      ],
+                      "overloadedDeclarations": [285, 286],
                       "referencedDeclaration": 286,
                       "src": "563:7:1",
                       "typeDescriptions": {
@@ -703,9 +679,7 @@
               "src": "737:254:1",
               "statements": [
                 {
-                  "assignments": [
-                    88
-                  ],
+                  "assignments": [88],
                   "declarations": [
                     {
                       "constant": false,
@@ -977,9 +951,7 @@
                   },
                   "id": 114,
                   "initializationExpression": {
-                    "assignments": [
-                      96
-                    ],
+                    "assignments": [96],
                     "declarations": [
                       {
                         "constant": false,
@@ -1159,9 +1131,7 @@
               "src": "1188:252:1",
               "statements": [
                 {
-                  "assignments": [
-                    132
-                  ],
+                  "assignments": [132],
                   "declarations": [
                     {
                       "constant": false,
@@ -1224,9 +1194,7 @@
                   "src": "1198:36:1"
                 },
                 {
-                  "assignments": [
-                    139
-                  ],
+                  "assignments": [139],
                   "declarations": [
                     {
                       "constant": false,
@@ -1714,16 +1682,12 @@
       },
       {
         "baseContracts": [],
-        "contractDependencies": [
-          170
-        ],
+        "contractDependencies": [170],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
         "id": 244,
-        "linearizedBaseContracts": [
-          244
-        ],
+        "linearizedBaseContracts": [244],
         "name": "RealEstatePropertyFactory",
         "nodeType": "ContractDefinition",
         "nodes": [
@@ -2128,9 +2092,7 @@
               "src": "2170:305:1",
               "statements": [
                 {
-                  "assignments": [
-                    214
-                  ],
+                  "assignments": [214],
                   "declarations": [
                     {
                       "constant": false,
@@ -2663,24 +2625,15 @@
     "attributes": {
       "absolutePath": "project:/contracts/RealEstatePropertyFactory.sol",
       "exportedSymbols": {
-        "RealEstateProperty": [
-          170
-        ],
-        "RealEstatePropertyFactory": [
-          244
-        ],
-        "SharedStructs": [
-          47
-        ]
+        "RealEstateProperty": [170],
+        "RealEstatePropertyFactory": [244],
+        "SharedStructs": [47]
       }
     },
     "children": [
       {
         "attributes": {
-          "literals": [
-            "experimental",
-            "ABIEncoderV2"
-          ]
+          "literals": ["experimental", "ABIEncoderV2"]
         },
         "id": 34,
         "name": "PragmaDirective",
@@ -2688,15 +2641,7 @@
       },
       {
         "attributes": {
-          "literals": [
-            "solidity",
-            ">=",
-            "0.4",
-            ".22",
-            "<",
-            "0.9",
-            ".0"
-          ]
+          "literals": ["solidity", ">=", "0.4", ".22", "<", "0.9", ".0"]
         },
         "id": 35,
         "name": "PragmaDirective",
@@ -2704,18 +2649,12 @@
       },
       {
         "attributes": {
-          "baseContracts": [
-            null
-          ],
-          "contractDependencies": [
-            null
-          ],
+          "baseContracts": [null],
+          "contractDependencies": [null],
           "contractKind": "library",
           "documentation": null,
           "fullyImplemented": true,
-          "linearizedBaseContracts": [
-            47
-          ],
+          "linearizedBaseContracts": [47],
           "name": "SharedStructs",
           "scope": 245
         },
@@ -2871,18 +2810,12 @@
       },
       {
         "attributes": {
-          "baseContracts": [
-            null
-          ],
-          "contractDependencies": [
-            null
-          ],
+          "baseContracts": [null],
+          "contractDependencies": [null],
           "contractKind": "contract",
           "documentation": null,
           "fullyImplemented": true,
-          "linearizedBaseContracts": [
-            170
-          ],
+          "linearizedBaseContracts": [170],
           "name": "RealEstateProperty",
           "scope": 245
         },
@@ -2993,9 +2926,7 @@
               "implemented": true,
               "isConstructor": true,
               "kind": "constructor",
-              "modifiers": [
-                null
-              ],
+              "modifiers": [null],
               "name": "",
               "scope": 170,
               "stateMutability": "nonpayable",
@@ -3039,9 +2970,7 @@
               },
               {
                 "attributes": {
-                  "parameters": [
-                    null
-                  ]
+                  "parameters": [null]
                 },
                 "children": [],
                 "id": 59,
@@ -3066,9 +2995,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 49,
                               "type": "address",
                               "value": "owner"
@@ -3080,9 +3007,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 57,
                               "type": "address",
                               "value": "_owner"
@@ -3164,9 +3089,7 @@
                           "isPure": false,
                           "isStructConstructorCall": false,
                           "lValueRequested": false,
-                          "names": [
-                            null
-                          ],
+                          "names": [null],
                           "type": "tuple()",
                           "type_conversion": false
                         },
@@ -3183,10 +3106,7 @@
                                   "typeString": "literal_string \"Not authorized.\""
                                 }
                               ],
-                              "overloadedDeclarations": [
-                                285,
-                                286
-                              ],
+                              "overloadedDeclarations": [285, 286],
                               "referencedDeclaration": 286,
                               "type": "function (bool,string memory) pure",
                               "value": "require"
@@ -3213,9 +3133,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 49,
                                   "type": "address",
                                   "value": "owner"
@@ -3227,9 +3145,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 67,
                                   "type": "address",
                                   "value": "_owner"
@@ -3291,9 +3207,7 @@
               "implemented": true,
               "isConstructor": false,
               "kind": "function",
-              "modifiers": [
-                null
-              ],
+              "modifiers": [null],
               "name": "getProperties",
               "scope": 170,
               "stateMutability": "view",
@@ -3303,9 +3217,7 @@
             "children": [
               {
                 "attributes": {
-                  "parameters": [
-                    null
-                  ]
+                  "parameters": [null]
                 },
                 "children": [],
                 "id": 79,
@@ -3362,9 +3274,7 @@
                 "children": [
                   {
                     "attributes": {
-                      "assignments": [
-                        88
-                      ]
+                      "assignments": [88]
                     },
                     "children": [
                       {
@@ -3414,9 +3324,7 @@
                           "isPure": false,
                           "isStructConstructorCall": false,
                           "lValueRequested": false,
-                          "names": [
-                            null
-                          ],
+                          "names": [null],
                           "type": "struct SharedStructs.Property memory[] memory",
                           "type_conversion": false
                         },
@@ -3466,9 +3374,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 51,
                               "type": "uint256",
                               "value": "numProperties"
@@ -3491,9 +3397,7 @@
                     "children": [
                       {
                         "attributes": {
-                          "assignments": [
-                            96
-                          ]
+                          "assignments": [96]
                         },
                         "children": [
                           {
@@ -3562,9 +3466,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 96,
                               "type": "uint256",
                               "value": "i"
@@ -3576,9 +3478,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 51,
                               "type": "uint256",
                               "value": "numProperties"
@@ -3609,9 +3509,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 96,
                                   "type": "uint256",
                                   "value": "i"
@@ -3658,9 +3556,7 @@
                                       {
                                         "attributes": {
                                           "argumentTypes": null,
-                                          "overloadedDeclarations": [
-                                            null
-                                          ],
+                                          "overloadedDeclarations": [null],
                                           "referencedDeclaration": 88,
                                           "type": "struct SharedStructs.Property memory[] memory",
                                           "value": "memoryArray"
@@ -3672,9 +3568,7 @@
                                       {
                                         "attributes": {
                                           "argumentTypes": null,
-                                          "overloadedDeclarations": [
-                                            null
-                                          ],
+                                          "overloadedDeclarations": [null],
                                           "referencedDeclaration": 96,
                                           "type": "uint256",
                                           "value": "i"
@@ -3701,9 +3595,7 @@
                                       {
                                         "attributes": {
                                           "argumentTypes": null,
-                                          "overloadedDeclarations": [
-                                            null
-                                          ],
+                                          "overloadedDeclarations": [null],
                                           "referencedDeclaration": 55,
                                           "type": "mapping(uint256 => struct SharedStructs.Property storage ref)",
                                           "value": "properties"
@@ -3715,9 +3607,7 @@
                                       {
                                         "attributes": {
                                           "argumentTypes": null,
-                                          "overloadedDeclarations": [
-                                            null
-                                          ],
+                                          "overloadedDeclarations": [null],
                                           "referencedDeclaration": 96,
                                           "type": "uint256",
                                           "value": "i"
@@ -3759,9 +3649,7 @@
                       {
                         "attributes": {
                           "argumentTypes": null,
-                          "overloadedDeclarations": [
-                            null
-                          ],
+                          "overloadedDeclarations": [null],
                           "referencedDeclaration": 88,
                           "type": "struct SharedStructs.Property memory[] memory",
                           "value": "memoryArray"
@@ -3791,9 +3679,7 @@
               "implemented": true,
               "isConstructor": false,
               "kind": "function",
-              "modifiers": [
-                null
-              ],
+              "modifiers": [null],
               "name": "createProperty",
               "scope": 170,
               "stateMutability": "nonpayable",
@@ -3941,9 +3827,7 @@
               },
               {
                 "attributes": {
-                  "parameters": [
-                    null
-                  ]
+                  "parameters": [null]
                 },
                 "children": [],
                 "id": 130,
@@ -3954,9 +3838,7 @@
                 "children": [
                   {
                     "attributes": {
-                      "assignments": [
-                        132
-                      ]
+                      "assignments": [132]
                     },
                     "children": [
                       {
@@ -4000,9 +3882,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 51,
                               "type": "uint256",
                               "value": "numProperties"
@@ -4023,9 +3903,7 @@
                   },
                   {
                     "attributes": {
-                      "assignments": [
-                        139
-                      ]
+                      "assignments": [139]
                     },
                     "children": [
                       {
@@ -4069,9 +3947,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 55,
                               "type": "mapping(uint256 => struct SharedStructs.Property storage ref)",
                               "value": "properties"
@@ -4083,9 +3959,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 132,
                               "type": "uint256",
                               "value": "propertyID"
@@ -4132,9 +4006,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 139,
                                   "type": "struct SharedStructs.Property storage pointer",
                                   "value": "p"
@@ -4151,9 +4023,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 122,
                               "type": "string memory",
                               "value": "_title"
@@ -4200,9 +4070,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 139,
                                   "type": "struct SharedStructs.Property storage pointer",
                                   "value": "p"
@@ -4219,9 +4087,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 124,
                               "type": "string memory",
                               "value": "_description"
@@ -4268,9 +4134,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 139,
                                   "type": "struct SharedStructs.Property storage pointer",
                                   "value": "p"
@@ -4287,9 +4151,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 126,
                               "type": "uint256",
                               "value": "_montlyPrice"
@@ -4336,9 +4198,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 139,
                                   "type": "struct SharedStructs.Property storage pointer",
                                   "value": "p"
@@ -4355,9 +4215,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 128,
                               "type": "uint256",
                               "value": "_deposit"
@@ -4393,18 +4251,12 @@
       },
       {
         "attributes": {
-          "baseContracts": [
-            null
-          ],
-          "contractDependencies": [
-            170
-          ],
+          "baseContracts": [null],
+          "contractDependencies": [170],
           "contractKind": "contract",
           "documentation": null,
           "fullyImplemented": true,
-          "linearizedBaseContracts": [
-            244
-          ],
+          "linearizedBaseContracts": [244],
           "name": "RealEstatePropertyFactory",
           "scope": 245
         },
@@ -4632,9 +4484,7 @@
               "implemented": true,
               "isConstructor": false,
               "kind": "function",
-              "modifiers": [
-                null
-              ],
+              "modifiers": [null],
               "name": "getRealEstateProperty",
               "scope": 244,
               "stateMutability": "view",
@@ -4732,26 +4582,20 @@
                       {
                         "attributes": {
                           "argumentTypes": null,
-                          "arguments": [
-                            null
-                          ],
+                          "arguments": [null],
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "isStructConstructorCall": false,
                           "lValueRequested": false,
-                          "names": [
-                            null
-                          ],
+                          "names": [null],
                           "type": "struct SharedStructs.Property memory[] memory",
                           "type_conversion": false
                         },
                         "children": [
                           {
                             "attributes": {
-                              "argumentTypes": [
-                                null
-                              ],
+                              "argumentTypes": [null],
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -4774,9 +4618,7 @@
                                   {
                                     "attributes": {
                                       "argumentTypes": null,
-                                      "overloadedDeclarations": [
-                                        null
-                                      ],
+                                      "overloadedDeclarations": [null],
                                       "referencedDeclaration": 174,
                                       "type": "mapping(address => contract RealEstateProperty)",
                                       "value": "properties"
@@ -4788,9 +4630,7 @@
                                   {
                                     "attributes": {
                                       "argumentTypes": null,
-                                      "overloadedDeclarations": [
-                                        null
-                                      ],
+                                      "overloadedDeclarations": [null],
                                       "referencedDeclaration": 189,
                                       "type": "address",
                                       "value": "_propertyOwner"
@@ -4835,9 +4675,7 @@
               "implemented": true,
               "isConstructor": false,
               "kind": "function",
-              "modifiers": [
-                null
-              ],
+              "modifiers": [null],
               "name": "createRealEstateProperty",
               "scope": 244,
               "stateMutability": "nonpayable",
@@ -4958,9 +4796,7 @@
               },
               {
                 "attributes": {
-                  "parameters": [
-                    null
-                  ]
+                  "parameters": [null]
                 },
                 "children": [],
                 "id": 212,
@@ -4971,9 +4807,7 @@
                 "children": [
                   {
                     "attributes": {
-                      "assignments": [
-                        214
-                      ]
+                      "assignments": [214]
                     },
                     "children": [
                       {
@@ -5012,9 +4846,7 @@
                           "isPure": false,
                           "isStructConstructorCall": false,
                           "lValueRequested": false,
-                          "names": [
-                            null
-                          ],
+                          "names": [null],
                           "type": "contract RealEstateProperty",
                           "type_conversion": false
                         },
@@ -5065,9 +4897,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 282,
                                   "type": "msg",
                                   "value": "msg"
@@ -5117,9 +4947,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 174,
                                   "type": "mapping(address => contract RealEstateProperty)",
                                   "value": "properties"
@@ -5143,9 +4971,7 @@
                                   {
                                     "attributes": {
                                       "argumentTypes": null,
-                                      "overloadedDeclarations": [
-                                        null
-                                      ],
+                                      "overloadedDeclarations": [null],
                                       "referencedDeclaration": 282,
                                       "type": "msg",
                                       "value": "msg"
@@ -5167,9 +4993,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 214,
                               "type": "contract RealEstateProperty",
                               "value": "property"
@@ -5205,9 +5029,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 176,
                               "type": "uint256",
                               "value": "numProperties"
@@ -5236,9 +5058,7 @@
                           "isPure": false,
                           "isStructConstructorCall": false,
                           "lValueRequested": false,
-                          "names": [
-                            null
-                          ],
+                          "names": [null],
                           "type": "tuple()",
                           "type_conversion": false
                         },
@@ -5279,9 +5099,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 214,
                                   "type": "contract RealEstateProperty",
                                   "value": "property"
@@ -5310,9 +5128,7 @@
                               {
                                 "attributes": {
                                   "argumentTypes": null,
-                                  "overloadedDeclarations": [
-                                    null
-                                  ],
+                                  "overloadedDeclarations": [null],
                                   "referencedDeclaration": 282,
                                   "type": "msg",
                                   "value": "msg"
@@ -5329,9 +5145,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 204,
                               "type": "string memory",
                               "value": "_title"
@@ -5343,9 +5157,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 206,
                               "type": "string memory",
                               "value": "_description"
@@ -5357,9 +5169,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 208,
                               "type": "uint256",
                               "value": "_amount"
@@ -5371,9 +5181,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 210,
                               "type": "uint256",
                               "value": "_deposit"

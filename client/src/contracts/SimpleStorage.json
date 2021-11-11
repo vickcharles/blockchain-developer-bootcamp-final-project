@@ -42,24 +42,14 @@
   "ast": {
     "absolutePath": "project:/contracts/SimpleStorage.sol",
     "exportedSymbols": {
-      "SimpleStorage": [
-        267
-      ]
+      "SimpleStorage": [267]
     },
     "id": 268,
     "nodeType": "SourceUnit",
     "nodes": [
       {
         "id": 246,
-        "literals": [
-          "solidity",
-          ">=",
-          "0.4",
-          ".22",
-          "<",
-          "0.9",
-          ".0"
-        ],
+        "literals": ["solidity", ">=", "0.4", ".22", "<", "0.9", ".0"],
         "nodeType": "PragmaDirective",
         "src": "32:32:2"
       },
@@ -70,9 +60,7 @@
         "documentation": null,
         "fullyImplemented": true,
         "id": 267,
-        "linearizedBaseContracts": [
-          267
-        ],
+        "linearizedBaseContracts": [267],
         "name": "SimpleStorage",
         "nodeType": "ContractDefinition",
         "nodes": [
@@ -298,23 +286,13 @@
     "attributes": {
       "absolutePath": "project:/contracts/SimpleStorage.sol",
       "exportedSymbols": {
-        "SimpleStorage": [
-          267
-        ]
+        "SimpleStorage": [267]
       }
     },
     "children": [
       {
         "attributes": {
-          "literals": [
-            "solidity",
-            ">=",
-            "0.4",
-            ".22",
-            "<",
-            "0.9",
-            ".0"
-          ]
+          "literals": ["solidity", ">=", "0.4", ".22", "<", "0.9", ".0"]
         },
         "id": 246,
         "name": "PragmaDirective",
@@ -322,18 +300,12 @@
       },
       {
         "attributes": {
-          "baseContracts": [
-            null
-          ],
-          "contractDependencies": [
-            null
-          ],
+          "baseContracts": [null],
+          "contractDependencies": [null],
           "contractKind": "contract",
           "documentation": null,
           "fullyImplemented": true,
-          "linearizedBaseContracts": [
-            267
-          ],
+          "linearizedBaseContracts": [267],
           "name": "SimpleStorage",
           "scope": 268
         },
@@ -370,9 +342,7 @@
               "implemented": true,
               "isConstructor": false,
               "kind": "function",
-              "modifiers": [
-                null
-              ],
+              "modifiers": [null],
               "name": "set",
               "scope": 267,
               "stateMutability": "nonpayable",
@@ -415,9 +385,7 @@
               },
               {
                 "attributes": {
-                  "parameters": [
-                    null
-                  ]
+                  "parameters": [null]
                 },
                 "children": [],
                 "id": 252,
@@ -442,9 +410,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 248,
                               "type": "uint256",
                               "value": "storedData"
@@ -456,9 +422,7 @@
                           {
                             "attributes": {
                               "argumentTypes": null,
-                              "overloadedDeclarations": [
-                                null
-                              ],
+                              "overloadedDeclarations": [null],
                               "referencedDeclaration": 250,
                               "type": "uint256",
                               "value": "x"
@@ -493,9 +457,7 @@
               "implemented": true,
               "isConstructor": false,
               "kind": "function",
-              "modifiers": [
-                null
-              ],
+              "modifiers": [null],
               "name": "get",
               "scope": 267,
               "stateMutability": "view",
@@ -505,9 +467,7 @@
             "children": [
               {
                 "attributes": {
-                  "parameters": [
-                    null
-                  ]
+                  "parameters": [null]
                 },
                 "children": [],
                 "id": 259,
@@ -557,9 +517,7 @@
                       {
                         "attributes": {
                           "argumentTypes": null,
-                          "overloadedDeclarations": [
-                            null
-                          ],
+                          "overloadedDeclarations": [null],
                           "referencedDeclaration": 248,
                           "type": "uint256",
                           "value": "storedData"

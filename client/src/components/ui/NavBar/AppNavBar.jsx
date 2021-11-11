@@ -1,14 +1,14 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Disclosure,} from '@headlessui/react'
-import {  MenuIcon, XIcon } from '@heroicons/react/outline'
+import { Disclosure } from "@headlessui/react";
+import { MenuIcon, XIcon } from "@heroicons/react/outline";
 
 const navigation = [
-  { name: 'Explorar', href: '#', current: true },
-  { name: 'My rentals', href: '#', current: false },
-]
+  { name: "Explorar", href: "#", current: true },
+  { name: "My rentals", href: "#", current: false },
+];
 
 function classNames(...classes) {
-   return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 export default function AppNavBar() {
   return (
@@ -35,11 +35,11 @@ export default function AppNavBar() {
                             href={item.href}
                             className={classNames(
                               item.current
-                                ? 'text-gray-800'
-                                : 'text-gray-400 hover:bg-gray-100',
-                              'px-3 py-2 rounded-md text-sm font-medium'
+                                ? "text-gray-800"
+                                : "text-gray-400 hover:bg-gray-100",
+                              "px-3 py-2 rounded-md text-sm font-semibold"
                             )}
-                            aria-current={item.current ? 'page' : undefined}
+                            aria-current={item.current ? "page" : undefined}
                           >
                             {item.name}
                           </a>
@@ -50,17 +50,15 @@ export default function AppNavBar() {
                   <div className="hidden md:block">
                     <div className="ml-4 flex items-center md:ml-6">
                       <div className="ml-10 flex items-baseline space-x-4">
-                          <a
-                    
-                            className={classNames(
-                              'bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium'
-                            )}
-                            aria-current={'page'}
-                          >
+                        <a
+                          className={classNames(
+                            "bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
+                          )}
+                          aria-current={"page"}
+                        >
                           Connect to a Wallet
-                          </a>
+                        </a>
                       </div>
-
 
                       {/* <Menu as="div" className="ml-3 relative">
                         <div>
@@ -105,7 +103,10 @@ export default function AppNavBar() {
                       {open ? (
                         <XIcon className="block h-6 w-6" aria-hidden="true" />
                       ) : (
-                        <MenuIcon className="block h-6 w-6" aria-hidden="true" />
+                        <MenuIcon
+                          className="block h-6 w-6"
+                          aria-hidden="true"
+                        />
                       )}
                     </Disclosure.Button>
                   </div>
@@ -114,8 +115,7 @@ export default function AppNavBar() {
             </>
           )}
         </Disclosure>
-    
       </div>
     </>
-  )
+  );
 }

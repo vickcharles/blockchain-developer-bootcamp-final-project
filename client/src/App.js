@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import RealEstatePropertyFactory from "./contracts/RealEstatePropertyFactory.json";
 import getWeb3 from "./getWeb3";
 import RentersList from "./components/containers/renters/RenterList";
-import AppNavBar from './components/ui/NavBar/AppNavBar'
+import AppNavBar from "./components/ui/NavBar/AppNavBar";
 
 import "./App.css";
 
@@ -24,10 +24,8 @@ class App extends Component {
       console.log(deployedNetwork);
       const instance = new web3.eth.Contract(
         RealEstatePropertyFactory.abi,
-        deployedNetwork && deployedNetwork.address,
+        deployedNetwork && deployedNetwork.address
       );
-
-
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
@@ -35,7 +33,7 @@ class App extends Component {
     } catch (error) {
       // Catch any errors for any of the above operations.
       alert(
-        `Failed to load web3, accounts, or contract. Check console for details.`,
+        `Failed to load web3, accounts, or contract. Check console for details.`
       );
       console.error(error);
     }
