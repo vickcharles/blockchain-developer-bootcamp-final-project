@@ -1,13 +1,14 @@
 import { Menu } from "@headlessui/react";
+import { formatAddress } from "../../../utils";
 import PropertyCard from "./PropertyCard";
 
 const PropertyList = ({ propertyOwners }) => {
   return (
     <>
       {propertyOwners?.map(({ owner, properties }) => (
-        <main className="py-6 sm:px-6 lg:px-8 p-8 bg-white border-gray-200	border rounded-lg ">
-          <div className="lg:flex lg:items-center lg:justify-between">
-            <div className="lg:flex lg:justify-between lg:align-ceter items-center">
+        <main className="py-6 sm:px-6 lg:px-8 p-8 bg-white border-gray-200	border rounded-lg mt-10">
+          <div className="flex lg:items-center lg:justify-between">
+            <div className="flex justify-between align-center items-center">
               <Menu>
                 <Menu.Button className="max-w-xs bg-gray-800 rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                   <span className="sr-only">Open user menu</span>
@@ -18,12 +19,12 @@ const PropertyList = ({ propertyOwners }) => {
                   />
                 </Menu.Button>
               </Menu>
-              <div className="border lg:ml-2 bg-gray-100 text-gray-400 px-2 rounded-full flex-1 h-8 lg:flex lg:items-center">
-                <h1>{owner}</h1>
+              <div className="border ml-2 bg-gray-100 text-gray-400 px-2 rounded-full flex-1 p-1 pl-2 pr-2 lg:flex lg:items-center">
+                <h1>{formatAddress(owner)}</h1>
               </div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-gray-400 lg:ml-1 "
+                className="h-6 w-6 text-gray-400 ml-1 "
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -37,7 +38,7 @@ const PropertyList = ({ propertyOwners }) => {
               </svg>
             </div>
           </div>
-          <div class="grid grid-cols-4 gap-4 mt-10">
+          <div class="grid grid-cols-1 md:grid-cols-4  gap-4 mt-10">
             {properties?.map((p) => (
               <PropertyCard property={p} />
             ))}

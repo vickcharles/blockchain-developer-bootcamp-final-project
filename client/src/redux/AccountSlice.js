@@ -15,11 +15,7 @@ export const accountSlice = createSlice({
   initialState: {
     address: "",
   },
-  reducers: {
-    setAccount: (state, action) => {
-      state.address = action.payload[0];
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getUserAddresses.fulfilled, (state, action) => {
       state.address = action.payload[0];

@@ -1,7 +1,16 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Web3 from "web3";
+import { rentProperty } from "../../../redux/Properties";
 
 const PropertyCard = ({ property }) => {
+  const accountAddress = useSelector((state) => state.account.address);
+  const dispatch = useDispatch();
+
+  const handleRentProperty = () => {
+    dispatch(rentProperty(property));
+  };
+
   return (
     <div className="bg-origin-border bg-white border-gray-200 border rounded-lg w-full">
       <img
@@ -12,7 +21,6 @@ const PropertyCard = ({ property }) => {
       <div className="p-3">
         <h1 className="font-medium">{property.title}</h1>
         <p className="pt-1 text-gray-400 text-sm">{property.description}</p>
-
         <div className="content-right items-center mt-5 ">
           <h5 className="text-right">
             ETH {Web3.utils.fromWei(property.montlyPrice, "ether")} / Month
@@ -35,11 +43,20 @@ const PropertyCard = ({ property }) => {
           </svg>
           <p className="text-gray-400 text-sm">Include deposit</p>
         </div>
-        <div className="flex items-baseline space-x-4 text-center pt-3">
-          <button className="bg-gray-900 h-10 text-white px-3 py-2 align-center align-left w-full rounded-md text-sm font-medium">
-            Rent now
-          </button>
-        </div>
+
+        {Web3.utils.toChecksumAddress(accountAddress) !==
+        Web3.utils.toChecksumAddress(property.owner) ? (
+          <div className="flex items-baseline space-x-4 text-center pt-3">
+            <button
+              className="bg-gray-900 h-10 text-white px-3 py-2 align-center align-left w-full rounded-md text-sm font-medium"
+              onClick={handleRentProperty}
+            >
+              Rent now {property.available ? "true" : "false"}
+            </button>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

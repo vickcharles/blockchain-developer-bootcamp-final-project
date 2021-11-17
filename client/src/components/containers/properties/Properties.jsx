@@ -11,7 +11,7 @@ const Properties = () => {
 
   useEffect(() => {
     dispatch(getAllProperties());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="max-w-7xl mx-auto">

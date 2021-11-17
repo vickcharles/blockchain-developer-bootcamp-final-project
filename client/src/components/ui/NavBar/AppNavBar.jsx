@@ -3,11 +3,7 @@ import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setAccount } from "../../../redux/AccountSlice";
-
-const navigation = [
-  { name: "Explorar", href: "#", current: true },
-  { name: "My rentals", href: "#", current: false },
-];
+import { Link, useMatch } from "react-router-dom";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -40,27 +36,15 @@ export default function AppNavBar() {
                 <div className="flex-shrink-0"></div>
                 <div className="hidden md:block">
                   <div className="flex items-baseline space-x-4">
-                    {navigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className={classNames(
-                          item.current
-                            ? "text-gray-800"
-                            : "text-gray-400 hover:bg-gray-100",
-                          "px-3 py-2 rounded-md text-sm font-semibold"
-                        )}
-                        aria-current={item.current ? "page" : undefined}
-                      >
-                        {item.name}
-                      </a>
-                    ))}
+                    <NavLink to="/" label="Explore" />
+                    <NavLink to="/rentals" label="My rentals" />
                   </div>
                 </div>
               </div>
 
               <div className="hidden md:block">
                 <div className="ml-4 flex">
+                  <NavLink to="/create" label="Create new property" />
                   {count === "" ? (
                     <div className="ml-10 flex items-baseline space-x-4">
                       <button
@@ -101,7 +85,7 @@ export default function AppNavBar() {
                         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                           <Menu.Item key="k">
                             <a
-                              href=""
+                              href="A"
                               className="block px-4 py-2 text-sm text-gray-700"
                             >
                               "ksjd"
@@ -128,5 +112,25 @@ export default function AppNavBar() {
         </>
       )}
     </Disclosure>
+  );
+}
+
+function NavLink({ label, to, activeOnlyWhenExact }) {
+  let match = useMatch({
+    path: to,
+    end: activeOnlyWhenExact,
+  });
+
+  return (
+    <Link
+      to={to}
+      className={classNames(
+        match ? "text-gray-800" : "text-gray-400 hover:bg-gray-100",
+        "px-3 py-2 rounded-md text-sm font-semibold"
+      )}
+      aria-current={match ? "page" : undefined}
+    >
+      {label}
+    </Link>
   );
 }

@@ -4,6 +4,7 @@ import getWeb3 from "../getWeb3";
 const instance = async () => {
   let web3;
   let networkId;
+
   web3 = await getWeb3();
   networkId = await web3.eth.net.getId();
   const deployedNetwork = RealEstatePropertyFactory.networks[networkId];
