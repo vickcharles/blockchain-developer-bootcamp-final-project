@@ -1,5 +1,4 @@
 // SPDX-License-Identifier: MIT
-
 pragma solidity >=0.4.22 <0.9.0;
 
 library Roles {
@@ -155,15 +154,13 @@ contract RealEstatePropertyFactory {
     function getBalanceOf(address _address) public view returns(uint)  {
       return _address.balance;        
     }
- 
 
-    // Create a property - only property owners
     function createProperty(
         string memory _title,
         string memory _description,
         uint256 _amount,
         uint256 _deposit
-    ) public isPropertyOwner {
+    ) public {
         Property memory property;
         RealEstateProperty storage p = properties[msg.sender];
         property.title = _title;
@@ -174,13 +171,11 @@ contract RealEstatePropertyFactory {
         property.owner = msg.sender;
         property.id = p.numOfProperties++;
         p.properties.push(property);
-    }
-
-    // Owners create a real state property
-    function createRealEstateProperty() public hasProperty {
-        RealEstateProperty storage c = properties[msg.sender];
-        c.owner = payable(msg.sender);
-        numOfAddress.push(msg.sender);
-        _propertyOwners.add(msg.sender);
+       
+       if(!_propertyOwners.has(msg.sender)) {
+          p.owner = payable(msg.sender);
+          numOfAddress.push(msg.sender);
+         _propertyOwners.add(msg.sender);
+       }
     }
 }

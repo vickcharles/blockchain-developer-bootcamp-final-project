@@ -3,8 +3,15 @@ import { useDispatch } from "react-redux";
 import { createProperty } from "../../../redux/Properties";
 
 const CreatePropertyForm = () => {
-  const [property, setProperty] = useState({});
   const dispatch = useDispatch();
+  const [errors, setErrors] = useState({});
+
+  const [property, setProperty] = useState({
+    title: "",
+    description: "",
+    montlyPrice: "",
+    depositPrice: "",
+  });
 
   const handleChange = (event) => {
     setProperty({
@@ -16,15 +23,69 @@ const CreatePropertyForm = () => {
 
   const handleCreation = () => {
     const { title, description, montlyPrice, depositPrice } = property;
-
-    dispatch(createProperty({ title, description, montlyPrice, depositPrice }));
+    const errors = validateForm();
+    console.log(errors);
+    if (!Object.keys(errors).length) {
+      console.log(property);
+      dispatch(
+        createProperty({ title, description, montlyPrice, depositPrice })
+      );
+    } else {
+      setErrors(errors);
+    }
   };
 
   const validateForm = () => {
-    const validations = {
-      key: "",
-      validation: () => {},
-    };
+    let errors = {};
+    const validations = [
+      {
+        key: "title",
+        validation: (value) => {
+          if (value === "") {
+            return "Campo requerido";
+          }
+          return "";
+        },
+      },
+      {
+        key: "description",
+        validation: (value) => {
+          if (value === "") {
+            return "Campo requerido";
+          }
+          return "";
+        },
+      },
+      {
+        key: "montlyPrice",
+        validation: (value) => {
+          if (value === "") {
+            return "Campo requerido";
+          }
+          return "";
+        },
+      },
+      {
+        key: "depositPrice",
+        validation: (value) => {
+          if (value === "") {
+            return "Campo requerido";
+          }
+          return "";
+        },
+      },
+    ];
+
+    validations.forEach(({ key, validation }) => {
+      const value = validation(property[key]);
+      if (value !== "") {
+        errors = {
+          ...errors,
+          [key]: value,
+        };
+      }
+    });
+    return errors;
   };
 
   return (
