@@ -23,7 +23,10 @@ const PropertyCard = ({ property }) => {
         <p className="pt-1 text-gray-400 text-sm">{property.description}</p>
         <div className="content-right items-center mt-5 ">
           <h5 className="text-right">
-            ETH {Web3.utils.fromWei(property.montlyPrice, "ether")} / Month
+            ETH{" "}
+            {property?.montlyPrice &&
+              Web3.utils.fromWei(property?.montlyPrice, "ether")}{" "}
+            / Month
           </h5>
         </div>
         <div className="flex items-center mt-2 justify-end">
@@ -44,8 +47,9 @@ const PropertyCard = ({ property }) => {
           <p className="text-gray-400 text-sm">Include deposit</p>
         </div>
 
-        {Web3.utils.toChecksumAddress(accountAddress) !==
-        Web3.utils.toChecksumAddress(property.owner) ? (
+        {accountAddress &&
+        Web3.utils.toChecksumAddress(accountAddress) !==
+          Web3.utils.toChecksumAddress(property.owner) ? (
           <div className="flex items-baseline space-x-4 text-center pt-3">
             <button
               className="bg-gray-900 h-10 text-white px-3 py-2 align-center align-left w-full rounded-md text-sm font-medium"

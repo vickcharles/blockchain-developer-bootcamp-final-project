@@ -40,13 +40,19 @@ export const rentProperty = createAsyncThunk(
       .catch((e) => {
         console.log(e);
       });
-    console.log(res);
+    return res;
   }
 );
 
 export const getRentals = createAsyncThunk(
   "properties/getRentals",
-  async ({ owner, id, montlyPrice, depositPrice }, { getState }) => {}
+  async (__, { getState }) => {
+    const { account } = getState();
+    const instance = await RealEstateProperty();
+    const address = Web3.utils.toChecksumAddress(account.address);
+    const res = await instance.methods.getPropertyByTenant(address).call();
+    return res;
+  }
 );
 
 export const createProperty = createAsyncThunk(
@@ -74,6 +80,7 @@ export const propertiesSlice = createSlice({
   name: "properties",
   initialState: {
     allProperties: [],
+    currentRental: null,
     isRentProcessing: false,
   },
   reducers: {},
@@ -86,6 +93,9 @@ export const propertiesSlice = createSlice({
     });
     builder.addCase(createProperty.rejected, (state, action) => {
       console.log(action.payload);
+    });
+    builder.addCase(getRentals.fulfilled, (state, action) => {
+      state.currentRental = action.payload;
     });
   },
 });

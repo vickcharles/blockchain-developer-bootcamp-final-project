@@ -1,58 +1,52 @@
 // SPDX-License-Identifier: MIT
+
 pragma solidity >=0.4.22 <0.9.0;
 
-library Roles {
-  struct Role {
-    mapping (address => bool) bearer;
-  }
+import "../libraries/Roles.sol";
+import "../libraries/Lessors.sol";
 
-  /**
-   * @dev give an account access to this role
-   */
-  function add(Role storage role, address account) internal {
-    require(account != address(0));
-    require(!has(role, account));
-    role.bearer[account] = true;
-  }
 
-  /**
-   * @dev remove an account's access to this role
-   */
-  function remove(Role storage role, address account) internal {
-    require(account != address(0));
-    require(has(role, account));
-
-    role.bearer[account] = false;
-  }
-
-  /**
-   * @dev check if an account has this role
-   * @return bool
-   */
-  function has(Role storage role, address account)
-    internal
-    view
-    returns (bool)
-  {
-    require(account != address(0));
-    return role.bearer[account];
-  }
-}
-
-contract RealEstatePropertyFactory {
+contract RentProperty {
+    
+    /*
+      --- Libraries
+    */
+    
     using Roles for Roles.Role;
+    using LessorsLib for LessorsLib.Lessors;
 
-    // state variables
-    Roles.Role private _propertyOwners;
+    /*
+      --- State variables
+    */
+    
+    LessorsLib.Lessors private _lessors;
+    Roles.Role private _lessorRoles;
     Roles.Role private _tenant;
+
+    
+    mapping(address => LessorsLib.Property) public tenant;
+    address[] public numOfLessors;
+    
+    
+     /*
+      --- Events
+    */
+    
+    event PropertyRented(address indexed lessor, address indexed tenant, uint propertyId);
+    event PropertyCreated(address indexed lessor, uint propertyId);
+    
+    
+    /*
+      --- Funtions modifiers
+    */
     
     modifier isPropertyOwner() {
-        require(_propertyOwners.has(msg.sender), "Not propertyowner");
+        require(_lessorRoles.has(msg.sender), "Not property owner");
         _;
     }
     
     modifier hasProperty() {
-        require(!_propertyOwners.has(msg.sender), "has property");
+        require(!_lessorRoles.has(msg.sender), "has property");
         _;
     }
     
@@ -65,62 +59,44 @@ contract RealEstatePropertyFactory {
         require(_tenant.has(msg.sender) == false, "Already has a Property");
         _;
     }
-    
-    mapping(address => RealEstateProperty) public properties;
-    mapping(address => Property) public tenant;
-    address[] public numOfAddress;
 
-    struct RealEstateProperty {
-        address payable owner;
-        uint256 numOfProperties;
-        Property[] properties;
-    }
-
-    struct Property {
-        uint id;
-        string title;
-        string description;
-        uint256 montlyPrice;
-        uint256 depositAmount;
-        uint256 depositPrice;
-        address owner;
-        address payable tenant;
-        bool available;
-    }
     
      /**
      * @dev get all properties for rental
     */
-    function getProperties() public view returns (RealEstateProperty[] memory) {
-        uint256 numLength = numOfAddress.length;
-        RealEstateProperty[] memory memoryArray = new RealEstateProperty[](
-            numOfAddress.length
-        );
-        for (uint256 i = 0; i < numLength; i++) {
-            memoryArray[i] = properties[numOfAddress[i]];
-        }
-        return memoryArray;
+    function getLessors() public view returns (LessorsLib.Lessor[] memory) {
+        return _lessors.getLessors(numOfLessors);
     }
 
      /**
-     * @dev rental a property
+     * @dev rent a property
     */
-    function rentProperty(address propertyOwner, uint propertyId) public payable  {
-        RealEstateProperty storage property = properties[propertyOwner];
-        uint montlyPrice = property.properties[propertyId].montlyPrice;
-        uint depositPrice = property.properties[propertyId].depositPrice;
-        uint sum = msg.value;
-        uint deposit = sum - montlyPrice;
-        uint toPay = sum - deposit;
-        uint toCheck = montlyPrice + depositPrice;
-        require(toCheck == msg.value, "You don't have enough ether");
-        require(property.properties[propertyId].available == true, "This property is not available for rent");
-        property.properties[propertyId].tenant = payable(msg.sender); 
-        property.properties[propertyId].available = false;
-        property.properties[propertyId].depositAmount = deposit;
-        tenant[msg.sender] = property.properties[propertyId];
-        property.owner.transfer(toPay);
+    function rentProperty(address lessorAddress, uint propertyId) public payable  {
+        LessorsLib.Lessor storage lessor = _lessors.getLessor(lessorAddress);
+        LessorsLib.Property storage property = lessor.properties[propertyId];
+        uint montlyPrice = property.montlyPrice;
+        uint depositPrice = property.depositPrice;
+        
+        uint value = msg.value;
+        uint deposit = value - montlyPrice;
+        uint amountToTransfer = value - deposit;
+        
+        require(montlyPrice + depositPrice == value, "You don't have enough ether");
+        require(property.available == true, "This property is not available for rent");
+        
+        // update lessor property 
+        property.tenant = payable(msg.sender); 
+        property.available = false;
+        property.depositAmount = deposit;
+
+        // transfer token to lessor 
+        lessor.owner.transfer(amountToTransfer);
+        
+        // set rented poperty to tenant
+        tenant[msg.sender] = property;
         _tenant.add(msg.sender);
+        
+        emit PropertyRented(property.tenant, msg.sender,  property.id);
     }
     
     /**
@@ -130,52 +106,44 @@ contract RealEstatePropertyFactory {
         public
         view
         returns (
-            string memory,
-            string memory,
-            uint256,
-            address,
-            address,
-            bool
+            uint256 id,
+            string memory title,
+            string memory description,
+            uint256 depositPrice,
+            uint256 montlyPrice,
+            address currentTenant,
+            address owner,
+            bool available
             
         )
     {
-        require(_tenant.has(_address), "Not has property rented");
-        return (
-            tenant[_address].title,
-            tenant[_address].description,
-            tenant[_address].depositPrice,
-            tenant[_address].tenant,
-            tenant[_address].owner,
-            tenant[_address].available
+            id = tenant[_address].id;
+            title = tenant[_address].title;
+            description = tenant[_address].description;
+            depositPrice = tenant[_address].depositPrice;
+            montlyPrice = tenant[_address].montlyPrice;
+            currentTenant = tenant[_address].tenant;
+            owner = tenant[_address].lessor;
+            available = tenant[_address].available;
             
-        );
     }
     
-    function getBalanceOf(address _address) public view returns(uint)  {
-      return _address.balance;        
-    }
-
+    /**
+     * @dev create new porpery ang get lessor role
+    */
     function createProperty(
         string memory _title,
         string memory _description,
         uint256 _amount,
         uint256 _deposit
     ) public {
-        Property memory property;
-        RealEstateProperty storage p = properties[msg.sender];
-        property.title = _title;
-        property.description = _description;
-        property.montlyPrice = _amount;
-        property.depositPrice = _deposit;
-        property.available = true;
-        property.owner = msg.sender;
-        property.id = p.numOfProperties++;
-        p.properties.push(property);
-       
-       if(!_propertyOwners.has(msg.sender)) {
-          p.owner = payable(msg.sender);
-          numOfAddress.push(msg.sender);
-         _propertyOwners.add(msg.sender);
+        LessorsLib.Lessor storage lessor = _lessors.createProperty(_title, _description, _amount, _deposit);
+     
+       // check if created lessor already exits
+       if(lessor.owner == address(0)) {
+          lessor.owner = payable(msg.sender);
+          numOfLessors.push(msg.sender);
+         _lessorRoles.add(msg.sender);
        }
     }
 }
