@@ -1,5 +1,5 @@
-var Migrations = artifacts.require("./RealEstatePropertyFactory.sol");
+var RentProperty = artifacts.require("./RentProperty.sol");
 
 module.exports = function (deployer) {
-  deployer.deploy(Migrations);
+  deployer.deploy(RentProperty);
 };
