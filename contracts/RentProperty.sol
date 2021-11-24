@@ -5,15 +5,20 @@ pragma solidity >=0.4.22 <0.9.0;
 import "../libraries/Roles.sol";
 import "../libraries/Lessors.sol";
 import "./IRentProperty.sol";
+import "../structs/Payment.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract RentProperty is IRentProperty{
-     
+contract RentProperty is IRentProperty {
+    
+    
     /*
       --- Libraries
     */
     
     using Roles for Roles.Role;
     using LessorsLib for LessorsLib.Lessors;
+    
+    uint public constant MONTH = 2628000;
 
     /*
       --- State variables
@@ -21,10 +26,11 @@ contract RentProperty is IRentProperty{
     
     LessorsLib.Lessors private _lessors;
     Roles.Role private _lessorRoles;
-    Roles.Role private _tenant;
+    Roles.Role private _tenantRoles;
 
     
-    mapping(address => LessorsLib.Property) public tenant;
+    mapping(address => LessorsLib.Property) public _tenant;
+    Payment[] public payments;
     address[] public numOfLessors;
     
     
@@ -33,7 +39,7 @@ contract RentProperty is IRentProperty{
     */
     
     event PropertyRented(address indexed lessor, address indexed tenant, uint propertyId);
-    event PropertyCreated(address indexed lessor, uint propertyId);
+    event PropertyCreated();
     
     
     /*
@@ -51,12 +57,12 @@ contract RentProperty is IRentProperty{
     }
     
     modifier onlyTenant() {
-        require(_tenant.has(msg.sender), "Not owner");
+        require(_tenantRoles.has(msg.sender), "Not owner");
         _;
     }
     
     modifier isTenant() {
-        require(_tenant.has(msg.sender) == false, "Already has a Property");
+        require(_tenantRoles.has(msg.sender) == false, "Already has a Property");
         _;
     }
 
@@ -64,22 +70,24 @@ contract RentProperty is IRentProperty{
      /**
      * @dev get all properties for rental
     */
-    function getLessors() public view returns (LessorsLib.Lessor[] memory) {
+    function getLessors() public view override returns (LessorsLib.Lessor[] memory) {
         return _lessors.getLessors(numOfLessors);
     }
-
-
+    
+    
      /**
-     * @dev get num of lessor
+     * @dev create and return new payments 
     */
-    function getNumOfLessors() public view returns (uint) {
-        return numOfLessors.length;
+    function createPayment(uint amount, address to, address from, uint date) private returns(Payment memory) {
+        Payment memory payment = Payment(amount, from, to, date);
+        payments.push(payment);
+        return payment;
     }
 
      /**
      * @dev rent a property
     */
-    function rentProperty(address lessorAddress, uint propertyId) public payable  {
+    function rentProperty(address lessorAddress, uint propertyId) public override payable {
         LessorsLib.Lessor storage lessor = _lessors.getLessor(lessorAddress);
         LessorsLib.Property storage property = lessor.properties[propertyId];
         uint montlyPrice = property.montlyPrice;
@@ -89,20 +97,22 @@ contract RentProperty is IRentProperty{
         uint deposit = value - montlyPrice;
         uint amountToTransfer = value - deposit;
         
-        require(montlyPrice + depositPrice == value, "You don't have enough ether");
+        require(montlyPrice + depositPrice == value, "wrong amount");
         require(property.available == true, "This property is not available for rent");
         
         // update lessor property 
         property.tenant = payable(msg.sender); 
         property.available = false;
         property.depositAmount = deposit;
+        property.lastPayment = createPayment(amountToTransfer, msg.sender, lessor.owner, block.timestamp);
+        property.nextPayment = block.timestamp + MONTH;
 
         // transfer token to lessor 
         lessor.owner.transfer(amountToTransfer);
         
         // set rented poperty to tenant
-        tenant[msg.sender] = property;
-        _tenant.add(msg.sender);
+        _tenant[msg.sender] = property;
+        _tenantRoles.add(msg.sender);
         
         emit PropertyRented(property.tenant, msg.sender,  property.id);
     }
@@ -113,39 +123,48 @@ contract RentProperty is IRentProperty{
     function getPropertyByTenant(address _address)
         public
         view
+        override
         returns (
             uint256 id,
             string memory title,
             string memory description,
+            string memory imgUrl,
             uint256 depositPrice,
             uint256 montlyPrice,
-            address currentTenant,
+            address tenant,
             address owner,
-            bool available
+            bool available,
+            Payment memory lastPayment,
+            uint256 nextPayment
             
         )
     {
-            id = tenant[_address].id;
-            title = tenant[_address].title;
-            description = tenant[_address].description;
-            depositPrice = tenant[_address].depositPrice;
-            montlyPrice = tenant[_address].montlyPrice;
-            currentTenant = tenant[_address].tenant;
-            owner = tenant[_address].lessor;
-            available = tenant[_address].available;
+            require(_tenantRoles.has(_address), "don't have a property");
+            id = _tenant[_address].id;
+            title = _tenant[_address].title;
+            description = _tenant[_address].description;
+            imgUrl = _tenant[_address].imgUrl;
+            depositPrice = _tenant[_address].depositPrice;
+            montlyPrice = _tenant[_address].montlyPrice;
+            tenant = _tenant[_address].tenant;
+            owner = _tenant[_address].lessor;
+            available = _tenant[_address].available;
+            lastPayment = _tenant[_address].lastPayment;
+            nextPayment = _tenant[_address].nextPayment;
             
     }
     
     /**
-     * @dev create new porpery ang get lessor role
+     * @dev create new porpery and get lessor role
     */
     function createProperty(
         string memory _title,
         string memory _description,
+        string memory _imgUrl,
         uint256 _amount,
         uint256 _deposit
-    ) public {
-        LessorsLib.Lessor storage lessor = _lessors.createProperty(_title, _description, _amount, _deposit);
+    ) public override {
+        LessorsLib.Lessor storage lessor = _lessors.createProperty(_title, _description, _imgUrl, _amount, _deposit);
      
        // check if created lessor already exits
        if(lessor.owner == address(0)) {
@@ -153,5 +172,8 @@ contract RentProperty is IRentProperty{
           numOfLessors.push(msg.sender);
          _lessorRoles.add(msg.sender);
        }
+
+
+        emit PropertyCreated();
     }
 }

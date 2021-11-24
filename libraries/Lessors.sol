@@ -1,5 +1,7 @@
 // SPDX-License-Identifier: MIT
+
 pragma solidity >=0.4.22 <0.9.0;
+import "../structs/Payment.sol";
 
 library LessorsLib {
   struct Lessors {
@@ -16,11 +18,14 @@ library LessorsLib {
     uint id;
     string title;
     string description;
+    string imgUrl;
     uint256 montlyPrice;
     uint256 depositAmount;
     uint256 depositPrice;
     address lessor;
     address payable tenant;
+    Payment lastPayment;
+    uint nextPayment;
     bool available;
  }
  
@@ -32,6 +37,7 @@ library LessorsLib {
      Lessors storage lessors, 
      string memory _title,
      string memory _description,
+     string memory _imgUrl,
      uint256 _amount,
      uint256 _deposit
     ) internal returns(Lessor storage lessor)
@@ -40,6 +46,7 @@ library LessorsLib {
       lessor = lessors._lessors[msg.sender];
       property.title = _title;
       property.description = _description;
+      property.imgUrl = _imgUrl;
       property.montlyPrice = _amount;
       property.depositPrice = _deposit;
       property.available = true;
