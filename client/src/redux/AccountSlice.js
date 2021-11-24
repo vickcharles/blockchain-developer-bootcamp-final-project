@@ -18,10 +18,7 @@ export const accountSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getUserAddresses.fulfilled, (state, action) => {
-      state = {
-        ...state,
-        address: action.payload[0] || "",
-      };
+      state.address = action.payload[0];
     });
   },
 });
