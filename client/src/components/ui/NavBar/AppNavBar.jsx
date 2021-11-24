@@ -49,7 +49,7 @@ export default function AppNavBar() {
                     className="hidden md:block"
                   />
 
-                  {count === "" ? (
+                  {!count ? (
                     <div className="ml-10 flex items-baseline space-x-4">
                       <button
                         onClick={handleWalletConnection}
