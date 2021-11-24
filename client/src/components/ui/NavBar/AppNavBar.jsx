@@ -9,8 +9,10 @@ function classNames(...classes) {
 }
 
 export default function AppNavBar() {
-  const count = useSelector((state) => state.account.address);
+  const address = useSelector((state) => state.account?.address);
   const dispatch = useDispatch();
+
+  console.log(address);
 
   const handleWalletConnection = async () => {
     if (typeof window.ethereum !== "undefined") {
@@ -49,7 +51,7 @@ export default function AppNavBar() {
                     className="hidden md:block"
                   />
 
-                  {!count ? (
+                  {!address ? (
                     <div className="ml-10 flex items-baseline space-x-4">
                       <button
                         onClick={handleWalletConnection}
@@ -72,7 +74,7 @@ export default function AppNavBar() {
                             />
                           </div>
                           <p className="p-2 font-normal text-gray-800  pr-5">
-                            Account: {count?.slice(0, 4)}
+                            Account: {address?.slice(0, 4)}
                           </p>
                         </div>
                       </Menu.Button>
