@@ -1,5 +1,4 @@
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setAccount } from "../../../redux/AccountSlice";
@@ -27,7 +26,7 @@ export default function AppNavBar() {
   };
 
   return (
-    <Disclosure as="nav" className="bg-white-800 mb-10">
+    <Disclosure as="nav" className="bg-white-800 mb-10 pl-10 pr-5">
       {({ open }) => (
         <>
           <div className="max-w-7xl mx-auto">
@@ -42,9 +41,14 @@ export default function AppNavBar() {
                 </div>
               </div>
 
-              <div className="hidden md:block">
+              <div className="md:block">
                 <div className="ml-4 flex">
-                  <NavLink to="/create" label="Create new property" />
+                  <NavLink
+                    to="/create"
+                    label="Create new property"
+                    className="hidden md:block"
+                  />
+
                   {count === "" ? (
                     <div className="ml-10 flex items-baseline space-x-4">
                       <button
@@ -88,7 +92,7 @@ export default function AppNavBar() {
                               href="A"
                               className="block px-4 py-2 text-sm text-gray-700"
                             >
-                              "ksjd"
+                              Log out
                             </a>
                           </Menu.Item>
                         </Menu.Items>
@@ -96,16 +100,6 @@ export default function AppNavBar() {
                     </Menu>
                   )}
                 </div>
-              </div>
-              <div className="-mr-2 flex md:hidden ">
-                <Disclosure.Button className="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                  <span className="sr-only">Open main menu</span>
-                  {open ? (
-                    <XIcon className="block h-6 w-6" aria-hidden="true" />
-                  ) : (
-                    <MenuIcon className="block h-6 w-6" aria-hidden="true" />
-                  )}
-                </Disclosure.Button>
               </div>
             </div>
           </div>
@@ -115,7 +109,7 @@ export default function AppNavBar() {
   );
 }
 
-function NavLink({ label, to, activeOnlyWhenExact }) {
+function NavLink({ label, to, activeOnlyWhenExact, className }) {
   let match = useMatch({
     path: to,
     end: activeOnlyWhenExact,
@@ -126,7 +120,7 @@ function NavLink({ label, to, activeOnlyWhenExact }) {
       to={to}
       className={classNames(
         match ? "text-gray-800" : "text-gray-400 hover:bg-gray-100",
-        "px-3 py-2 rounded-md text-sm font-semibold"
+        `px-3 py-2 rounded-md text-sm font-semibold ${className}`
       )}
       aria-current={match ? "page" : undefined}
     >

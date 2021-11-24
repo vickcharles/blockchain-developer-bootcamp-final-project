@@ -1,4 +1,4 @@
-import RealEstatePropertyFactory from "../contracts/RealEstatePropertyFactory.json";
+import RealEstatePropertyFactory from "../contracts/RentProperty.json";
 import getWeb3 from "../getWeb3";
 
 const instance = async () => {
@@ -8,6 +8,8 @@ const instance = async () => {
   web3 = await getWeb3();
   networkId = await web3.eth.net.getId();
   const deployedNetwork = RealEstatePropertyFactory.networks[networkId];
+
+  console.log(deployedNetwork.address);
 
   return new web3.eth.Contract(
     RealEstatePropertyFactory.abi,

@@ -19,7 +19,7 @@ const PropertyList = ({ propertyOwners }) => {
                   />
                 </Menu.Button>
               </Menu>
-              <div className="border ml-2 bg-gray-100 text-gray-400 px-2 rounded-full flex-1 p-1 pl-2 pr-2 lg:flex lg:items-center">
+              <div className="border ml-2 bg-gray-50 text-gray-400 px-2 rounded-full flex-1 p-1 pl-2 pr-2 lg:flex lg:items-center">
                 <h1>{formatAddress(owner)}</h1>
               </div>
               <svg

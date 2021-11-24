@@ -5,20 +5,21 @@ import RealEstateProperty from "../services/RealEstateProperty";
 export const getAllProperties = createAsyncThunk(
   "properties/getProperties",
   async (_, { getState }) => {
-    const { account } = getState();
-    console.log(account);
     const instance = await RealEstateProperty();
-    const res = await instance.methods.getProperties().call();
+    const res = await instance.methods.getLessors().call();
 
     return res.map((obj) => ({
       properties: obj.properties.map((obj) => ({
         available: obj.available,
         depositAmount: obj.depositAmount,
         depositPrice: obj.depositPrice,
+        imgUrl: obj.imgUrl,
         description: obj.description,
         id: obj.id,
         montlyPrice: obj.montlyPrice,
-        owner: obj.owner,
+        lessor: obj.lessor,
+        lastPayment: obj.lastPayment,
+        nextPayment: obj.nextPayment,
         tenant: obj.tenant,
         title: obj.title,
       })),
@@ -30,12 +31,13 @@ export const getAllProperties = createAsyncThunk(
 
 export const rentProperty = createAsyncThunk(
   "properties/rentProperty",
-  async ({ owner, id, montlyPrice, depositPrice }, { getState }) => {
+  async ({ lessor, id, montlyPrice, depositPrice }, { getState }) => {
+    console.log(lessor);
     const { account } = getState();
     const instance = await RealEstateProperty();
     const amountToPay = Number(montlyPrice) + Number(depositPrice);
     const res = await instance.methods
-      .rentProperty(owner, id)
+      .rentProperty(lessor, id)
       .send({ from: account.address, value: amountToPay })
       .catch((e) => {
         console.log(e);
@@ -57,22 +59,22 @@ export const getRentals = createAsyncThunk(
 
 export const createProperty = createAsyncThunk(
   "properties/create",
-  async ({ title, description, montlyPrice, depositPrice }, { getState }) => {
+  async (
+    { title, description, imgUrl, montlyPrice, depositPrice },
+    { getState }
+  ) => {
     const { account } = getState();
     const instance = await RealEstateProperty();
 
-    const res = await instance.methods
+    await instance.methods
       .createProperty(
         title,
         description,
+        imgUrl,
         Web3.utils.toWei(montlyPrice, "ether"),
         Web3.utils.toWei(depositPrice, "ether")
       )
-      .send({ from: account.address })
-      .catch((e) => {
-        console.log(e);
-      });
-    console.log(res);
+      .send({ from: account.address });
   }
 );
 

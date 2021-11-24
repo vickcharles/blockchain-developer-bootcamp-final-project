@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createProperty } from "../../../redux/Properties";
+import { Navigate } from "react-router-dom";
 
 const CreatePropertyForm = () => {
   const dispatch = useDispatch();
+  // eslint-disable-next-line
   const [errors, setErrors] = useState({});
+  const [redirect, setRedirect] = useState(false);
 
   const [property, setProperty] = useState({
     title: "",
     description: "",
+    imgUrl: "",
     montlyPrice: "",
     depositPrice: "",
   });
@@ -18,18 +22,23 @@ const CreatePropertyForm = () => {
       ...property,
       [event.target.name]: event.target.value,
     });
-    console.log(property);
   };
 
-  const handleCreation = () => {
-    const { title, description, montlyPrice, depositPrice } = property;
+  const handleCreation = async () => {
+    const { title, description, montlyPrice, depositPrice, imgUrl } = property;
     const errors = validateForm();
     console.log(errors);
     if (!Object.keys(errors).length) {
-      console.log(property);
       dispatch(
-        createProperty({ title, description, montlyPrice, depositPrice })
+        createProperty({
+          title,
+          description,
+          montlyPrice,
+          depositPrice,
+          imgUrl,
+        })
       );
+      setRedirect(true);
     } else {
       setErrors(errors);
     }
@@ -40,6 +49,15 @@ const CreatePropertyForm = () => {
     const validations = [
       {
         key: "title",
+        validation: (value) => {
+          if (value === "") {
+            return "Campo requerido";
+          }
+          return "";
+        },
+      },
+      {
+        key: "imgUrl",
         validation: (value) => {
           if (value === "") {
             return "Campo requerido";
@@ -132,6 +150,25 @@ const CreatePropertyForm = () => {
         htmlFor="price"
         className="block text-sm font-medium text-gray-700 mt-5"
       >
+        Img url
+      </label>
+      <div className="mt-1 relative rounded-md bg-origin-border bg-white border-gray-200 border">
+        <div className="absolute inset-y-0 left-0 pl-3 flex items-center">
+          <span className="text-gray-500 sm:text-sm"></span>
+        </div>
+        <input
+          type="imgUrl"
+          onChange={handleChange}
+          name="imgUrl"
+          id="imgUrl"
+          className="block w-full  p-3 pr-17 sm:text-md rounded-md"
+          placeholder="Img url"
+        />
+      </div>
+      <label
+        htmlFor="price"
+        className="block text-sm font-medium text-gray-700 mt-5"
+      >
         Montly price
       </label>
       <div className="mt-1 relative rounded-md bg-origin-border bg-white border-gray-200 border">
@@ -198,6 +235,7 @@ const CreatePropertyForm = () => {
           Continue
         </button>
       </div>
+      {redirect && <Navigate to="/" />}
     </div>
   );
 };
