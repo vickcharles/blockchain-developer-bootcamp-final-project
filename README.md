@@ -8,7 +8,7 @@ Smart Contract to automate and manage rental cashflow between property owners, p
 Property Owners will be able to:
 
 - Connect to metamask wallet
-- Create new properties to rents
+- Create properties to rent
 - Receive montly payments from tenants
 
 In future features, The property owners will be able to select a trusted third party property manager who will have the role of contract administrator to do some validations actions between the landlord and tenant agreements.
