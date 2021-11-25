@@ -6,11 +6,19 @@ import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
 import store from "./store";
 import { BrowserRouter } from "react-router-dom";
+import { Web3ReactProvider } from "@web3-react/core";
+import { ethers } from "ethers";
+
+function getLibrary(provider) {
+  return new ethers.providers.Web3Provider(provider);
+}
 
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>
-      <App />
+      <Web3ReactProvider getLibrary={getLibrary}>
+        <App />
+      </Web3ReactProvider>
     </Provider>
   </BrowserRouter>,
 

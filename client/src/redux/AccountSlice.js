@@ -4,8 +4,7 @@ export const getUserAddresses = createAsyncThunk(
   "users/getAdress",
   async () => {
     if (typeof window.ethereum !== "undefined") {
-      const res = await window.ethereum.request({ method: "eth_accounts" });
-      return res;
+      return [];
     }
   }
 );

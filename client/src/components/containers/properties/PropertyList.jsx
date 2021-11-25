@@ -6,7 +6,7 @@ const PropertyList = ({ propertyOwners }) => {
   return (
     <>
       {propertyOwners?.map(({ owner, properties }) => (
-        <main className="py-6 sm:px-6 lg:px-8 p-8 bg-white border-gray-200	border rounded-lg mt-10">
+        <main className="py-6 sm:px-6 lg:px-8 p-8 bg-white border-gray-200  border-2 rounded-lg mt-10">
           <div className="flex lg:items-center lg:justify-between">
             <div className="flex justify-between align-center items-center">
               <Menu>

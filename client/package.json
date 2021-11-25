@@ -7,11 +7,17 @@
     "@headlessui/react": "^1.4.2",
     "@heroicons/react": "^1.0.5",
     "@openzeppelin/contracts": "^4.3.3",
+    "@reduxjs/toolkit": "^1.6.2",
+    "@web3-react/core": "^6.1.9",
+    "@web3-react/injected-connector": "^6.0.7",
+    "ethers": "^5.5.1",
     "moment": "^2.29.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-redux": "^7.2.6",
     "react-router-dom": "6",
     "react-scripts": "4.0.3",
+    "vercel": "^23.1.2",
     "web3": "1.4.0"
   },
   "scripts": {

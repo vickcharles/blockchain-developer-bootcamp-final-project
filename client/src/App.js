@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import "./App.css";
 import { getUserAddresses } from "./redux/AccountSlice";
 import { useDispatch } from "react-redux";
+
 import { Routes, Route, Link, useMatch } from "react-router-dom";
 import HomePage from "./components/containers/pages/HomePage";
 import AppNavBar from "./components/ui/NavBar/AppNavBar";
@@ -10,6 +11,10 @@ import MyRentals from "./components/containers/pages/MyRentals";
 
 const App = () => {
   const dispatch = useDispatch();
+
+  if (window.ethereum) {
+    window.ethereum.on("accountsChanged", () => window.location.reload());
+  }
 
   useEffect(() => {
     dispatch(getUserAddresses());
