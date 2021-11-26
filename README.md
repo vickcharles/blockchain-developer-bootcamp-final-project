@@ -22,6 +22,7 @@ Tenants will be able to:
 - Rent property 
 - Check income payment
 - Pay monthly rent
+- Check rented property details
 
 In future features, user will be able pay maintenance expenses invoices
 
