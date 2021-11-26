@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
-import "./App.css";
 import { getUserAddresses } from "./redux/AccountSlice";
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route, Link, useMatch } from "react-router-dom";
 import HomePage from "./components/containers/pages/HomePage";
 import AppNavBar from "./components/ui/NavBar/AppNavBar";
 import AddProperty from "./components/containers/pages/AddProperty";
 import MyRentals from "./components/containers/pages/MyRentals";
+import { clearError } from "./redux/App";
+import "./App.css";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -22,12 +22,16 @@ const App = () => {
 
   return (
     <div className="App">
+      <GeneralAppError />
       <AppNavBar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/create" element={<AddProperty />} />
-        <Route path="/rentals" element={<MyRentals />} />
-      </Routes>
+      <div className="mb-32">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/create" element={<AddProperty />} />
+          <Route path="/rentals" element={<MyRentals />} />
+        </Routes>
+      </div>
+
       <section
         id="bottom-navigation"
         class="flex justify-between fixed inset-x-0 bottom-0 z-10 bg-white shadow p-5 md:hidden"
@@ -105,5 +109,38 @@ function NavLink({ label, to, activeOnlyWhenExact }) {
     <Link to={to} className={!match ? "text-gray-400" : "text-indigo-400"}>
       {label}
     </Link>
+  );
+}
+
+function GeneralAppError() {
+  const dispatch = useDispatch();
+  const error = useSelector((state) => state.app.generalError);
+
+  if (!error) {
+    return "";
+  }
+  return (
+    <div className="pt-2 pb-2 bg-red-200">
+      <div className="max-w-7xl mx-auto flex justify-between align-center">
+        <div></div>
+        <h1 className="text-red-800">{error}</h1>
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5 text-red-800 cursor-pointer"
+          fill="none"
+          onClick={() => dispatch(clearError())}
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </div>
+    </div>
   );
 }

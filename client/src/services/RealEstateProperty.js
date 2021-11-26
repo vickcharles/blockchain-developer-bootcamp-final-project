@@ -9,8 +9,6 @@ const instance = async () => {
   networkId = await web3.eth.net.getId();
   const deployedNetwork = RealEstatePropertyFactory.networks[networkId];
 
-  console.log(deployedNetwork.address);
-
   return new web3.eth.Contract(
     RealEstatePropertyFactory.abi,
     deployedNetwork && deployedNetwork.address

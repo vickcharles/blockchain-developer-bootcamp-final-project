@@ -1,14 +1,19 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useWeb3React } from "@web3-react/core";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Web3 from "web3";
+import { setGeneralError } from "../../../redux/App";
 import { rentProperty } from "../../../redux/Properties";
 import { formatAddress } from "../../../utils";
 import ConfirmationModal from "../../ui/modals/ConfirmationModal";
 
 const PropertyCard = ({ property }) => {
-  const accountAddress = useSelector((state) => state.account.address);
   const [open, setOpen] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const { error, isLoading } = useSelector(
+    (state) => state.properties.actions.rentProperty
+  );
+  const { account } = useWeb3React();
   const dispatch = useDispatch();
 
   const handleConfirm = () => {
@@ -16,19 +21,31 @@ const PropertyCard = ({ property }) => {
   };
 
   const handleRentProperty = () => {
-    dispatch(rentProperty(property));
+    dispatch(rentProperty({ ...property, account }));
+    setIsSubmitted(true);
+    setOpen(false);
   };
 
+  useEffect(() => {
+    if (isSubmitted) {
+      if (!isLoading && error) {
+        dispatch(setGeneralError(error.message));
+      } else if (!isLoading && !error) {
+        console.log("hola");
+      }
+    }
+  }, [isSubmitted, isLoading, error, dispatch]);
+
   const getButton = !property?.available ? (
-    <div className="w-full text-yellow-600 text-center font-medium text-yellow-500 text-sm py-3 rounded-md mt-5">
+    <button className="text-white px-3 py-3 text-yellow-600 align-center align-left w-full rounded-md text-sm font-medium mt-5">
       Rented by{" "}
       {Web3.utils.toChecksumAddress(property.tenant) ===
-      Web3.utils.toChecksumAddress(accountAddress)
+      Web3.utils.toChecksumAddress(account)
         ? "you"
         : formatAddress(property.tenant)}
-    </div>
-  ) : accountAddress &&
-    Web3.utils.toChecksumAddress(accountAddress) !==
+    </button>
+  ) : account &&
+    Web3.utils.toChecksumAddress(account) !==
       Web3.utils.toChecksumAddress(property.lessor) ? (
     <div className="flex items-baseline space-x-4 text-center rounded-md ">
       <button

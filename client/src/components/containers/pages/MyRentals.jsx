@@ -4,13 +4,15 @@ import { useDispatch } from "react-redux";
 import { getRentals } from "../../../redux/Properties";
 import PropertyCard from "../properties/PropertyCard";
 import moment from "moment";
+import { useWeb3React } from "@web3-react/core";
 
 const MyRentals = () => {
   const property = useSelector((state) => state.properties.currentRental);
+  const { account } = useWeb3React();
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getRentals());
-  }, [dispatch]);
+    dispatch(getRentals(account));
+  }, [dispatch, account]);
 
   return (
     <div>

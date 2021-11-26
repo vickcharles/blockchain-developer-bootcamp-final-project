@@ -1,13 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { createProperty } from "../../../redux/Properties";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useWeb3React } from "@web3-react/core";
+import { injected } from "../../../connectors";
+import { useSelector } from "react-redux";
+import { setGeneralError } from "../../../redux/App";
 
 const CreatePropertyForm = () => {
+  const { error, isLoading } = useSelector(
+    (state) => state.properties.actions.create
+  );
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+  const { activate, account } = useWeb3React();
   const dispatch = useDispatch();
-  // eslint-disable-next-line
-  const [errors, setErrors] = useState({});
-  const [redirect, setRedirect] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const tryActivate = async () => {
+      await activate(injected, () => {});
+    };
+    tryActivate();
+  }, [activate]);
 
   const [property, setProperty] = useState({
     title: "",
@@ -16,33 +30,6 @@ const CreatePropertyForm = () => {
     montlyPrice: "",
     depositPrice: "",
   });
-
-  const handleChange = (event) => {
-    setProperty({
-      ...property,
-      [event.target.name]: event.target.value,
-    });
-  };
-
-  const handleCreation = async () => {
-    const { title, description, montlyPrice, depositPrice, imgUrl } = property;
-    const errors = validateForm();
-    console.log(errors);
-    if (!Object.keys(errors).length) {
-      dispatch(
-        createProperty({
-          title,
-          description,
-          montlyPrice,
-          depositPrice,
-          imgUrl,
-        })
-      );
-      setRedirect(true);
-    } else {
-      setErrors(errors);
-    }
-  };
 
   const validateForm = () => {
     let errors = {};
@@ -105,6 +92,54 @@ const CreatePropertyForm = () => {
     });
     return errors;
   };
+
+  const handleChange = (event) => {
+    setProperty({
+      ...property,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleCreation = async () => {
+    const { title, description, montlyPrice, depositPrice, imgUrl } = property;
+    const errors = validateForm();
+    if (!Object.keys(errors).length) {
+      await dispatch(
+        createProperty({
+          address: account,
+          title,
+          description,
+          montlyPrice,
+          depositPrice,
+          imgUrl,
+        })
+      );
+      setIsFormSubmitted(true);
+    }
+  };
+
+  useEffect(() => {
+    if (isFormSubmitted) {
+      if (!isLoading && error.message) {
+        dispatch(setGeneralError(error.message));
+      } else if (!isLoading && !error.message) {
+        navigate("/");
+      }
+    }
+  }, [isLoading, error, isFormSubmitted, navigate, dispatch]);
+
+  if (isLoading) {
+    return (
+      <>
+        <div class="flex justify-center items-center">
+          <div class="animate-spin rounded-full h-12 w-12 md:h-20 md:w-20 border-t-2 border-b-2 border-purple-500"></div>
+        </div>
+        <div>
+          <h1 className="text-center mt-10">Confirmando transacción...</h1>
+        </div>
+      </>
+    );
+  }
 
   return (
     <div>
@@ -235,7 +270,6 @@ const CreatePropertyForm = () => {
           Continue
         </button>
       </div>
-      {redirect && <Navigate to="/" />}
     </div>
   );
 };
