@@ -29,7 +29,7 @@ In future features, user will be able pay maintenance expenses invoices
 
 ## Directory structure
 
-- `client`: Project's React frontend.
+- `client`: React app frontend.
 - `contracts`: Smart contracts that are deployed in the Ropsten testnet.
 - `migrations`: Migration files for deploying contracts in `contracts` directory.
 - `test`: Tests for smart contracts.
