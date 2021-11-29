@@ -1,22 +1,27 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity >=0.4.22 <0.9.0;
+pragma solidity 0.8.9;
 
 import "../libraries/Roles.sol";
 import "../libraries/Lessors.sol";
 import "./IRentProperty.sol";
 import "../structs/Payment.sol";
+
+import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract RentProperty is IRentProperty {
     
-    
     /*
       --- Libraries
     */
-    
     using Roles for Roles.Role;
+    using SafeMath for uint256;
     using LessorsLib for LessorsLib.Lessors;
+    
+    /*
+      --- Constants
+    */
     
     uint public constant MONTH = 2628000;
 
@@ -66,17 +71,16 @@ contract RentProperty is IRentProperty {
         _;
     }
 
-    
-     /**
-     * @dev get all properties for rental
-    */
+
+    // @return lessors list
     function getLessors() public view override returns (LessorsLib.Lessor[] memory) {
         return _lessors.getLessors(numOfLessors);
     }
     
     
      /**
-     * @dev create and return new payments 
+     * @notice create a new payment
+     * @dev return new payment
     */
     function createPayment(uint amount, address to, address from, uint date) private returns(Payment memory) {
         Payment memory payment = Payment(amount, from, to, date);
@@ -85,19 +89,20 @@ contract RentProperty is IRentProperty {
     }
 
      /**
-     * @dev rent a property
+     * @notice return new payment
     */
     function rentProperty(address lessorAddress, uint propertyId) public override payable {
+        require(_tenant[msg.sender].tenant == address(0), "already property rented");
         LessorsLib.Lessor storage lessor = _lessors.getLessor(lessorAddress);
         LessorsLib.Property storage property = lessor.properties[propertyId];
-        uint montlyPrice = property.montlyPrice;
-        uint depositPrice = property.depositPrice;
+        uint256 montlyPrice = property.montlyPrice;
+        uint256 depositPrice = property.depositPrice;
         
-        uint value = msg.value;
-        uint deposit = value - montlyPrice;
-        uint amountToTransfer = value - deposit;
+        uint256 value = msg.value;
+        uint256 deposit = value.sub(montlyPrice);
+        uint256 amountToTransfer = value.sub(deposit);
         
-        require(montlyPrice + depositPrice == value, "wrong amount");
+        require(montlyPrice.add(depositPrice) == value, "wrong amount");
         require(property.available == true, "This property is not available for rent");
         
         // update lessor property 
@@ -106,19 +111,19 @@ contract RentProperty is IRentProperty {
         property.depositAmount = deposit;
         property.lastPayment = createPayment(amountToTransfer, msg.sender, lessor.owner, block.timestamp);
         property.nextPayment = block.timestamp + MONTH;
-
-        // transfer token to lessor 
-        lessor.owner.transfer(amountToTransfer);
         
         // set rented poperty to tenant
         _tenant[msg.sender] = property;
         _tenantRoles.add(msg.sender);
+
+        (bool sent, ) = lessor.owner.call{value: amountToTransfer}("");
+        require(sent, "Failed to tranfer token to tenant");
         
         emit PropertyRented(property.tenant, msg.sender,  property.id);
     }
     
     /**
-     * @dev get single property by address
+     * @notice get single property by tenant address
     */
     function getPropertyByTenant(address _address)
         public
@@ -166,13 +171,11 @@ contract RentProperty is IRentProperty {
     ) public override {
         LessorsLib.Lessor storage lessor = _lessors.createProperty(_title, _description, _imgUrl, _amount, _deposit);
      
-       // check if created lessor already exits
        if(lessor.owner == address(0)) {
           lessor.owner = payable(msg.sender);
           numOfLessors.push(msg.sender);
          _lessorRoles.add(msg.sender);
        }
-
 
         emit PropertyCreated();
     }

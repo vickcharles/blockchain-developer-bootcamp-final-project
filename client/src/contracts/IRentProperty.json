@@ -258,7 +258,7 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.9+commit.e5eed63a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_title\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_description\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_imgUrl\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_deposit\",\"type\":\"uint256\"}],\"name\":\"createProperty\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getLessors\",\"outputs\":[{\"components\":[{\"internalType\":\"address payable\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"numOfProperties\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"imgUrl\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"montlyPrice\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"depositAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"depositPrice\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"lessor\",\"type\":\"address\"},{\"internalType\":\"address payable\",\"name\":\"tenant\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"date\",\"type\":\"uint256\"}],\"internalType\":\"struct Payment\",\"name\":\"lastPayment\",\"type\":\"tuple\"},{\"internalType\":\"uint256\",\"name\":\"nextPayment\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"available\",\"type\":\"bool\"}],\"internalType\":\"struct LessorsLib.Property[]\",\"name\":\"properties\",\"type\":\"tuple[]\"}],\"internalType\":\"struct LessorsLib.Lessor[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_address\",\"type\":\"address\"}],\"name\":\"getPropertyByTenant\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"imgUrl\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"depositPrice\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"montlyPrice\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"tenant\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"available\",\"type\":\"bool\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"date\",\"type\":\"uint256\"}],\"internalType\":\"struct Payment\",\"name\":\"lastPayment\",\"type\":\"tuple\"},{\"internalType\":\"uint256\",\"name\":\"nextPayment\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"lessorAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"propertyId\",\"type\":\"uint256\"}],\"name\":\"rentProperty\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/IRentProperty.sol\":\"IRentProperty\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/IRentProperty.sol\":{\"keccak256\":\"0xd3be71fee4a3c0ec18fd38ecde7c9b18b2aef573e271096518360c5a5f0042ce\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5c3f7f6f97253be8199fad44d21b75d040e496e9eb8fe27e4d91704d70d5eb6e\",\"dweb:/ipfs/QmYW8zKZ1xiGnUnyfB4uoYE4LdPpf1CzYtaN55xPs1kh2H\"]},\"project:/libraries/Lessors.sol\":{\"keccak256\":\"0x20aaa624e152245e109ec674a6d0b70031f4d399a4e7a2f0d3909a6269f6af60\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://4498922347aa224715369ef25e93d724ea8ce5500d9e789d4b0bef9a0a73d323\",\"dweb:/ipfs/QmUJmrnqb14Uj9CsXPYvMer4tcjuaRXNekA2VZoqPFm2Hi\"]},\"project:/structs/Payment.sol\":{\"keccak256\":\"0xb7f525170f283845102705786becf9cf7151540a63cf3904b990a13cdb5da3c7\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://8debcf89dcea2a60ede272d2dc505a6f2f3a0a1ddfc18af2012ef9fe7656f067\",\"dweb:/ipfs/Qmd7bKEBDeuHpVytEaeWE5o63577SiLibyb6ZW713PUGo8\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.9+commit.e5eed63a\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_title\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_description\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_imgUrl\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_deposit\",\"type\":\"uint256\"}],\"name\":\"createProperty\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getLessors\",\"outputs\":[{\"components\":[{\"internalType\":\"address payable\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"numOfProperties\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"imgUrl\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"montlyPrice\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"depositAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"depositPrice\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"lessor\",\"type\":\"address\"},{\"internalType\":\"address payable\",\"name\":\"tenant\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"date\",\"type\":\"uint256\"}],\"internalType\":\"struct Payment\",\"name\":\"lastPayment\",\"type\":\"tuple\"},{\"internalType\":\"uint256\",\"name\":\"nextPayment\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"available\",\"type\":\"bool\"}],\"internalType\":\"struct LessorsLib.Property[]\",\"name\":\"properties\",\"type\":\"tuple[]\"}],\"internalType\":\"struct LessorsLib.Lessor[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_address\",\"type\":\"address\"}],\"name\":\"getPropertyByTenant\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"imgUrl\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"depositPrice\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"montlyPrice\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"tenant\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"available\",\"type\":\"bool\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"date\",\"type\":\"uint256\"}],\"internalType\":\"struct Payment\",\"name\":\"lastPayment\",\"type\":\"tuple\"},{\"internalType\":\"uint256\",\"name\":\"nextPayment\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"lessorAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"propertyId\",\"type\":\"uint256\"}],\"name\":\"rentProperty\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/IRentProperty.sol\":\"IRentProperty\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/IRentProperty.sol\":{\"keccak256\":\"0xd3be71fee4a3c0ec18fd38ecde7c9b18b2aef573e271096518360c5a5f0042ce\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5c3f7f6f97253be8199fad44d21b75d040e496e9eb8fe27e4d91704d70d5eb6e\",\"dweb:/ipfs/QmYW8zKZ1xiGnUnyfB4uoYE4LdPpf1CzYtaN55xPs1kh2H\"]},\"project:/libraries/Lessors.sol\":{\"keccak256\":\"0x20aaa624e152245e109ec674a6d0b70031f4d399a4e7a2f0d3909a6269f6af60\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://4498922347aa224715369ef25e93d724ea8ce5500d9e789d4b0bef9a0a73d323\",\"dweb:/ipfs/QmUJmrnqb14Uj9CsXPYvMer4tcjuaRXNekA2VZoqPFm2Hi\"]},\"project:/structs/Payment.sol\":{\"keccak256\":\"0x596a205599d457f650e6a1868b7f2390654fe8846549a2f78762a213e52dc182\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5a4d1317b9f1b65462a107669d1a2d141120181e02e5e3a10182372ca1b4d297\",\"dweb:/ipfs/QmXAJravBDtxG3m54cYLPsPVz9EKyNxnyLUXWJq6TPa7V5\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
@@ -275,10 +275,10 @@
         184
       ],
       "LessorsLib": [
-        903
+        948
       ],
       "Payment": [
-        1017
+        1062
       ]
     },
     "id": 185,
@@ -306,7 +306,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 185,
-        "sourceUnit": 904,
+        "sourceUnit": 949,
         "src": "66:34:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -357,7 +357,7 @@
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_struct$_Lessor_$685_memory_ptr_$dyn_memory_ptr",
+                    "typeIdentifier": "t_array$_t_struct$_Lessor_$730_memory_ptr_$dyn_memory_ptr",
                     "typeString": "struct LessorsLib.Lessor[]"
                   },
                   "typeName": {
@@ -368,13 +368,13 @@
                         "id": 130,
                         "name": "LessorsLib.Lessor",
                         "nodeType": "IdentifierPath",
-                        "referencedDeclaration": 685,
+                        "referencedDeclaration": 730,
                         "src": "170:17:2"
                       },
-                      "referencedDeclaration": 685,
+                      "referencedDeclaration": 730,
                       "src": "170:17:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Lessor_$685_storage_ptr",
+                        "typeIdentifier": "t_struct$_Lessor_$730_storage_ptr",
                         "typeString": "struct LessorsLib.Lessor"
                       }
                     },
@@ -382,7 +382,7 @@
                     "nodeType": "ArrayTypeName",
                     "src": "170:19:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_struct$_Lessor_$685_storage_$dyn_storage_ptr",
+                      "typeIdentifier": "t_array$_t_struct$_Lessor_$730_storage_$dyn_storage_ptr",
                       "typeString": "struct LessorsLib.Lessor[]"
                     }
                   },
@@ -785,7 +785,7 @@
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Payment_$1017_memory_ptr",
+                    "typeIdentifier": "t_struct$_Payment_$1062_memory_ptr",
                     "typeString": "struct Payment"
                   },
                   "typeName": {
@@ -795,13 +795,13 @@
                       "id": 164,
                       "name": "Payment",
                       "nodeType": "IdentifierPath",
-                      "referencedDeclaration": 1017,
+                      "referencedDeclaration": 1062,
                       "src": "561:7:2"
                     },
-                    "referencedDeclaration": 1017,
+                    "referencedDeclaration": 1062,
                     "src": "561:7:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Payment_$1017_storage_ptr",
+                      "typeIdentifier": "t_struct$_Payment_$1062_storage_ptr",
                       "typeString": "struct Payment"
                     }
                   },
@@ -1021,10 +1021,10 @@
         184
       ],
       "LessorsLib": [
-        903
+        948
       ],
       "Payment": [
-        1017
+        1062
       ]
     },
     "id": 185,
@@ -1052,7 +1052,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 185,
-        "sourceUnit": 904,
+        "sourceUnit": 949,
         "src": "66:34:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -1103,7 +1103,7 @@
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_struct$_Lessor_$685_memory_ptr_$dyn_memory_ptr",
+                    "typeIdentifier": "t_array$_t_struct$_Lessor_$730_memory_ptr_$dyn_memory_ptr",
                     "typeString": "struct LessorsLib.Lessor[]"
                   },
                   "typeName": {
@@ -1114,13 +1114,13 @@
                         "id": 130,
                         "name": "LessorsLib.Lessor",
                         "nodeType": "IdentifierPath",
-                        "referencedDeclaration": 685,
+                        "referencedDeclaration": 730,
                         "src": "170:17:2"
                       },
-                      "referencedDeclaration": 685,
+                      "referencedDeclaration": 730,
                       "src": "170:17:2",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Lessor_$685_storage_ptr",
+                        "typeIdentifier": "t_struct$_Lessor_$730_storage_ptr",
                         "typeString": "struct LessorsLib.Lessor"
                       }
                     },
@@ -1128,7 +1128,7 @@
                     "nodeType": "ArrayTypeName",
                     "src": "170:19:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_struct$_Lessor_$685_storage_$dyn_storage_ptr",
+                      "typeIdentifier": "t_array$_t_struct$_Lessor_$730_storage_$dyn_storage_ptr",
                       "typeString": "struct LessorsLib.Lessor[]"
                     }
                   },
@@ -1531,7 +1531,7 @@
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Payment_$1017_memory_ptr",
+                    "typeIdentifier": "t_struct$_Payment_$1062_memory_ptr",
                     "typeString": "struct Payment"
                   },
                   "typeName": {
@@ -1541,13 +1541,13 @@
                       "id": 164,
                       "name": "Payment",
                       "nodeType": "IdentifierPath",
-                      "referencedDeclaration": 1017,
+                      "referencedDeclaration": 1062,
                       "src": "561:7:2"
                     },
-                    "referencedDeclaration": 1017,
+                    "referencedDeclaration": 1062,
                     "src": "561:7:2",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Payment_$1017_storage_ptr",
+                      "typeIdentifier": "t_struct$_Payment_$1062_storage_ptr",
                       "typeString": "struct Payment"
                     }
                   },
@@ -1766,7 +1766,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-11-23T08:19:40.613Z",
+  "updatedAt": "2021-11-29T19:09:36.494Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

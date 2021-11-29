@@ -3,7 +3,6 @@ dotenv.config();
 
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 
-console.log(process.env.ROPSTEN_MNEMONIC);
 /**
  * Use this file to configure your truffle project. It's seeded with some
  * common settings for different networks and features like migrations,

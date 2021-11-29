@@ -2,6 +2,7 @@ import { useWeb3React } from "@web3-react/core";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Web3 from "web3";
+import { useNavigate } from "react-router-dom";
 import { setGeneralError } from "../../../redux/App";
 import { rentProperty } from "../../../redux/Properties";
 import { formatAddress } from "../../../utils";
@@ -10,6 +11,8 @@ import ConfirmationModal from "../../ui/modals/ConfirmationModal";
 const PropertyCard = ({ property }) => {
   const [open, setOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const navigate = useNavigate();
+
   const { error, isLoading } = useSelector(
     (state) => state.properties.actions.rentProperty
   );
@@ -31,10 +34,10 @@ const PropertyCard = ({ property }) => {
       if (!isLoading && error) {
         dispatch(setGeneralError(error.message));
       } else if (!isLoading && !error) {
-        console.log("hola");
+        navigate('/rentals')
       }
     }
-  }, [isSubmitted, isLoading, error, dispatch]);
+  }, [isSubmitted, isLoading, error, dispatch, navigate]);
 
   const getButton = !property?.available ? (
     <button className="text-white px-3 py-3 text-yellow-600 align-center align-left w-full rounded-md text-sm font-medium mt-5">
@@ -74,7 +77,7 @@ const PropertyCard = ({ property }) => {
           alt=""
         />
         <div className="p-3">
-          <h1 className="font-medium">{property.title}</h1>
+          <h1 className="font-medium">{property.title.substring(0, 30)}{property.title.length > 30 ? "..." : ""}</h1>
           <p className="pt-1 text-gray-400 text-sm">{property.description}</p>
           <div className="content-right items-center mt-5 ">
             <h5 className="text-right">
@@ -128,7 +131,7 @@ const PropertyCard = ({ property }) => {
             </div>
           </div>
         }
-        title="Confirmar transaccion"
+        title="Confirm transaction"
       />
     </div>
   );

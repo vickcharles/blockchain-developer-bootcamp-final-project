@@ -1,9 +1,11 @@
 import { Fragment, useEffect } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Link, useMatch, useNavigate } from "react-router-dom";
-import { useWeb3React } from "@web3-react/core";
+import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
 import { classNames } from "../../../utils";
 import { injected } from "../../../connectors.js";
+import { useDispatch } from "react-redux";
+import { setGeneralError } from "../../../redux/App";
 
 export default function AppNavBar() {
   return (
@@ -41,23 +43,34 @@ export default function AppNavBar() {
 const ConnectWalletButton = () => {
   const { activate, active, account, deactivate } = useWeb3React();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  // Replace this soon
   const handleWalletConnection = async () => {
     if (!window.ethereum) {
+      dispatch(setGeneralError("Install"));
       return;
     }
     activate(injected, (e) => {
-      console.log(e);
+      if (e instanceof UnsupportedChainIdError) {
+        dispatch(setGeneralError("Only Ropsten supported."));
+      }
     });
   };
 
   useEffect(() => {
+    if (!window.ethereum) {
+      dispatch(setGeneralError("Install Metamask to use this app"));
+      return;
+    }
     const tryActivate = async () => {
-      await activate(injected, () => {});
+      await activate(injected, (e) => {
+        if (e instanceof UnsupportedChainIdError) {
+          dispatch(setGeneralError("Only Ropsten supported."));
+        }
+      });
     };
     tryActivate();
-  }, [activate]);
+  }, [activate, dispatch]);
 
   const onLogOut = (deactivate) => {
     deactivate();

@@ -10,6 +10,7 @@ const MyRentals = () => {
   const property = useSelector((state) => state.properties.currentRental);
   const { account } = useWeb3React();
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getRentals(account));
   }, [dispatch, account]);

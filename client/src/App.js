@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { getUserAddresses } from "./redux/AccountSlice";
+import React from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import { Routes, Route, Link, useMatch } from "react-router-dom";
 import HomePage from "./components/containers/pages/HomePage";
@@ -10,15 +10,10 @@ import { clearError } from "./redux/App";
 import "./App.css";
 
 const App = () => {
-  const dispatch = useDispatch();
-
   if (window.ethereum) {
     window.ethereum.on("accountsChanged", () => window.location.reload());
+    window.ethereum.on("networkChanged", () => window.location.reload());
   }
-
-  useEffect(() => {
-    dispatch(getUserAddresses());
-  }, [dispatch]);
 
   return (
     <div className="App">
