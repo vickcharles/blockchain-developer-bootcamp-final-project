@@ -5,8 +5,8 @@ import PropertyCard from "./PropertyCard";
 const PropertyList = ({ propertyOwners }) => {
   return (
     <>
-      {propertyOwners?.map(({ owner, properties }) => (
-        <main className="py-6 sm:px-6 lg:px-8 p-8 bg-white border-gray-200  border-2 rounded-lg mt-10">
+      {propertyOwners?.map(({ owner, properties }, i) => (
+        <main className="py-6 sm:px-6 lg:px-8 p-8 bg-white border-gray-200  border-2 rounded-lg mt-10" key={i}>
           <div className="flex lg:items-center lg:justify-between">
             <div className="flex justify-between align-center items-center">
               <Menu>
@@ -38,9 +38,9 @@ const PropertyList = ({ propertyOwners }) => {
               </svg>
             </div>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-4  gap-4 mt-10">
-            {properties?.map((p) => (
-              <PropertyCard property={p} />
+          <div className="grid grid-cols-1 md:grid-cols-4  gap-4 mt-10">
+            {properties?.map((p, i) => (
+              <PropertyCard property={p} key={i}/>
             ))}
           </div>
         </main>

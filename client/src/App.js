@@ -29,7 +29,7 @@ const App = () => {
 
       <section
         id="bottom-navigation"
-        class="flex justify-between fixed inset-x-0 bottom-0 z-10 bg-white shadow p-5 md:hidden"
+        className="flex justify-between fixed inset-x-0 bottom-0 z-10 bg-white shadow p-5 md:hidden"
       >
         <NavLink
           to="/"

@@ -262,7 +262,7 @@ const CreatePropertyForm = () => {
           </select>
         </div>
       </div>
-      <div className="">
+      <div>
         <button
           onClick={handleCreation}
           className="bg-gray-900 h-10 text-white px-3 py-2 align-center align-left w-full rounded-md text-sm font-medium mt-10 h-12"
