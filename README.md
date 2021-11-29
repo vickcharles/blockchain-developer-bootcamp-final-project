@@ -57,7 +57,7 @@ before running the following commands make sure you are located in the project r
 
 0x44E91B3e2a0ACe8a174104B009F88Dbe60323d0a
 
-## Environment variables (not needed for running project locally)
+## Environment variables
 
 ```
 ROPSTEN_INFURA_PROJECT_ID=
