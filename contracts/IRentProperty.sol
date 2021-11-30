@@ -1,11 +1,14 @@
 // SPDX-License-Identifier: MIT
 
-pragma solidity >=0.4.22 <0.9.0;
+pragma solidity 0.8.9;
 import "../libraries/Lessors.sol";
 
 interface IRentProperty {
+
   function getLessors() external returns (LessorsLib.Lessor[] memory);
+
   function rentProperty(address lessorAddress, uint propertyId) external payable;
+
   function getPropertyByTenant(address _address) external returns (
     uint256 id,
     string memory title,

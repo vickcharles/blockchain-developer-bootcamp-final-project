@@ -10,11 +10,16 @@ import "../structs/Payment.sol";
 import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
+/** 
+ * @title Rent Property contract
+ * @author Vickler Charles
+ */
 contract RentProperty is IRentProperty {
     
     /*
       --- Libraries
     */
+
     using Roles for Roles.Role;
     using SafeMath for uint256;
     using LessorsLib for LessorsLib.Lessors;
@@ -39,11 +44,23 @@ contract RentProperty is IRentProperty {
     address[] public numOfLessors;
     
     
-     /*
+    /*
       --- Events
     */
+
     
+    /**
+     * @notice Emitted when a tenant rent a property
+     * @param lessor address
+     * @param tenant address
+     * @param propertyId rented property id
+    */
     event PropertyRented(address indexed lessor, address indexed tenant, uint propertyId);
+
+
+    /**
+     * @notice Emitted when a property is created
+    */
     event PropertyCreated();
     
     
@@ -51,28 +68,13 @@ contract RentProperty is IRentProperty {
       --- Funtions modifiers
     */
     
-    modifier isPropertyOwner() {
-        require(_lessorRoles.has(msg.sender), "Not property owner");
+    modifier onlyTenantsWithoutRentedProperties() {
+        require(_tenant[msg.sender].tenant == address(0), "already property rented");
         _;
     }
     
-    modifier hasProperty() {
-        require(!_lessorRoles.has(msg.sender), "has property");
-        _;
-    }
-    
-    modifier onlyTenant() {
-        require(_tenantRoles.has(msg.sender), "Not owner");
-        _;
-    }
-    
-    modifier isTenant() {
-        require(_tenantRoles.has(msg.sender) == false, "Already has a Property");
-        _;
-    }
 
-
-    // @return lessors list
+    /// @return lessors list
     function getLessors() public view override returns (LessorsLib.Lessor[] memory) {
         return _lessors.getLessors(numOfLessors);
     }
@@ -80,7 +82,10 @@ contract RentProperty is IRentProperty {
     
      /**
      * @notice create a new payment
-     * @dev return new payment
+     * @param amount the payment amount
+     * @param to who sends the payment
+     * @param from who receive the payment
+     * @param date payment date in seconds
     */
     function createPayment(uint amount, address to, address from, uint date) private returns(Payment memory) {
         Payment memory payment = Payment(amount, from, to, date);
@@ -89,10 +94,11 @@ contract RentProperty is IRentProperty {
     }
 
      /**
-     * @notice return new payment
+     * @notice rent property
+     * @param lessorAddress property lessor address
+     * @param propertyId property id to rent
     */
-    function rentProperty(address lessorAddress, uint propertyId) public override payable {
-        require(_tenant[msg.sender].tenant == address(0), "already property rented");
+    function rentProperty(address lessorAddress, uint propertyId) public override payable onlyTenantsWithoutRentedProperties {
         LessorsLib.Lessor storage lessor = _lessors.getLessor(lessorAddress);
         LessorsLib.Property storage property = lessor.properties[propertyId];
         uint256 montlyPrice = property.montlyPrice;
@@ -105,26 +111,25 @@ contract RentProperty is IRentProperty {
         require(montlyPrice.add(depositPrice) == value, "wrong amount");
         require(property.available == true, "This property is not available for rent");
         
-        // update lessor property 
+        // Update lessor property 
         property.tenant = payable(msg.sender); 
         property.available = false;
         property.depositAmount = deposit;
         property.lastPayment = createPayment(amountToTransfer, msg.sender, lessor.owner, block.timestamp);
         property.nextPayment = block.timestamp + MONTH;
         
-        // set rented poperty to tenant
+        // Set rented poperty to tenant
         _tenant[msg.sender] = property;
         _tenantRoles.add(msg.sender);
 
+        // Transfer tokens to property owner
         (bool sent, ) = lessor.owner.call{value: amountToTransfer}("");
         require(sent, "Failed to tranfer token to tenant");
         
         emit PropertyRented(property.tenant, msg.sender,  property.id);
     }
     
-    /**
-     * @notice get single property by tenant address
-    */
+    /// @notice Returns propery by tenant address.
     function getPropertyByTenant(address _address)
         public
         view
@@ -160,7 +165,12 @@ contract RentProperty is IRentProperty {
     }
     
     /**
-     * @dev create new porpery and get lessor role
+     * @dev create new property
+     * @param _title the property title
+     * @param _description the property description
+     * @param _imgUrl the property image url
+     * @param _amount the property amount
+     * @param _deposit the property deposit
     */
     function createProperty(
         string memory _title,
