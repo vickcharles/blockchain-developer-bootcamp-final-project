@@ -43,7 +43,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -139,7 +140,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -158,7 +160,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -192,7 +195,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -306,7 +310,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -324,7 +329,8 @@
       "name": "rentProperty",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function"
+      "type": "function",
+      "payable": true
     },
     {
       "inputs": [
@@ -415,7 +421,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -25997,8 +26004,8 @@
     "3": {
       "events": {},
       "links": {},
-      "address": "0x0b2044c1673A47602510e6D9678f6FE01F57F1AF",
-      "transactionHash": "0xca0a8c20428fc372cc5cacfb044cd63b10584eac8c67ed96d48d2cf5bf272c83"
+      "address": "0x9EEe391474c0119af3E81C79CD866d5387ea631d",
+      "transactionHash": "0x24e747c8d014739158203be6b9835c5599351c45bf70190582e742979d54a29f"
     },
     "5777": {
       "events": {},
@@ -26008,7 +26015,8 @@
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-11-30T22:56:42.306Z",
+  "updatedAt": "2021-11-30T23:25:45.484Z",
+  "networkType": "ethereum",
   "devdoc": {
     "author": "Vickler Charles",
     "events": {
