@@ -24,12 +24,12 @@ Tenants will be able to:
 - Pay monthly rent
 - Check rented property details
 
-In future features, user will be able pay maintenance expenses invoices
+In future features, tenants will be able pay maintenance expenses invoices
 
 
 ## Directory structure
 
-- `client`: Project's React frontend.
+- `client`: React app frontend.
 - `contracts`: Smart contracts that are deployed in the Ropsten testnet.
 - `migrations`: Migration files for deploying contracts in `contracts` directory.
 - `test`: Tests for smart contracts.
@@ -41,11 +41,10 @@ before running the following commands make sure you are located in the project r
 ### Run Smart Contract for local development with Truffle Suite 
 
 - Run yarn install in project root to install Truffle build and smart contract dependencies
-- Run local testnet in port 7545 with an Ethereum client, e.g. Ganache
+- Run local testnet in port 9545 with an Ethereum client, e.g. Ganache
 - truffle migrate --network development
 - truffle console --network development
 - Run tests in Truffle console: test
-- development network id is 1337, remember to change it in Metamask as well!
 
 ### Frontend
 - cd client
