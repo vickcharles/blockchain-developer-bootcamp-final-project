@@ -1,2 +1,2 @@
-Testnet contract address: 0x9EEe391474c0119af3E81C79CD866d5387ea631d
 Testnet network: Ropsten
+Contract address: 0x83447AeA93b3a77C76df2F3a2f82B6D72995aa12
