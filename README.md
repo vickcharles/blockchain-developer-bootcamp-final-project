@@ -4,9 +4,6 @@
 
 https://blockchain-developer-bootcamp-final-project-two.vercel.app/
 
-## Screen Cast
-
-https://www.loom.com/share/bc16314c6d164d19a2baac70171bb5bd
 
 ## About The Project
 
